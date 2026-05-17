@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAI7D | KINGMC</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background: radial-gradient(circle,#0f0f0f,#000);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* nền ánh sáng */
+.glow{
+    position:fixed;
+    width:300px;
+    height:300px;
+    background:cyan;
+    filter:blur(150px);
+    top:20%;
+    left:30%;
+    animation:move 6s infinite alternate;
+}
+
+@keyframes move{
+    from{transform:translate(0,0);}
+    to{transform:translate(200px,100px);}
+}
+
+.container{
+    text-align:center;
+    padding:50px 20px;
+    position:relative;
+}
+
+.avatar{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    border:4px solid cyan;
+    box-shadow:0 0 25px cyan;
+    object-fit:cover;
+}
+
+h1{
+    font-size:60px;
+    margin-top:15px;
+    color:cyan;
+    text-shadow:0 0 20px cyan;
+}
+
+.tag{
+    color:yellow;
+    font-size:25px;
+    margin-top:10px;
+}
+
+.card{
+    margin-top:30px;
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    width:80%;
+    max-width:600px;
+    margin-left:auto;
+    margin-right:auto;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 15px black;
+}
+
+.skills{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:15px;
+}
+
+.skill{
+    padding:10px 15px;
+    background:cyan;
+    color:black;
+    border-radius:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.skill:hover{
+    transform:scale(1.1);
+    background:yellow;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:lime;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:orange;
+}
+
+footer{
+    margin-top:40px;
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+
+<!-- Ảnh của bạn -->
+<img class="avatar" src="https://i.imgur.com/4M34hi2.png">
+
+<h1>HAI7D</h1>
+
+<div class="tag">
+👑 KING Rank | KINGMC Server
+</div>
+
+<div class="card">
+<h2>Giới thiệu</h2>
+<p>
+Xin chào! Mình là <b>HAI7D</b>, một game thủ Minecraft tại server KINGMC.
+Mình thích PvP, xây dựng và khám phá thế giới game.
+</p>
+</div>
+
+<div class="card">
+<h2>Kỹ năng</h2>
+
+<div class="skills">
+<div class="skill">PvP Pro</div>
+<div class="skill">Builder</div>
+<div class="skill">Survival</div>
+<div class="skill">Creative</div>
+<div class="skill">Grinding</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Thông tin</h2>
+<p>🎮 Server: KINGMC</p>
+<p>👑 Rank: KING</p>
+<p>🔥 Nick: HAI7D</p>
+
+<button onclick="msg()">Bấm vào đây</button>
+</div>
+
+<footer>
+© 2025 HAI7D - KINGMC
+</footer>
+
+</div>
+
+<script>
+function msg(){
+    alert("Chào mừng đến website KINGMC của HAI7D!");
+}
+</script>
+
+</body>
+</html>

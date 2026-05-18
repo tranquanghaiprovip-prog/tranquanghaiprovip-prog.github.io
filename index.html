@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A4K14 - Đại Gia Đình Kỷ Niệm</title>
+<title>A4K14 - Tuổi Trẻ Rực Rỡ</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -16,48 +16,31 @@
 }
 
 body {
-    background: #060211;
+    background: #fdfbf7;
     overflow-x: hidden;
-    color: white;
+    color: #334155;
 }
 
-/* NỀN ĐỘNG SAO BAY */
-.star-bg {
+/* NỀN ĐỘNG THANH XUÂN CÁNH HOA RƠI */
+.falling-bg {
     position: fixed;
     inset: 0;
     z-index: 1;
-    background: radial-gradient(circle at 50% 50%, #16103c 0%, #060211 100%);
+    background: linear-gradient(135deg, #fef2f2 0%, #f0fdf4 50%, #f0f9ff 100%);
     overflow: hidden;
 }
-.star {
+.petal {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: fly linear infinite;
+    background: rgba(244, 143, 177, 0.6);
+    border-radius: 150% 0 150% 150%;
+    animation: fade linear infinite;
+    z-index: 1;
 }
-.nebula {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-    border-radius: 50%;
-    filter: blur(40px);
-    animation: floatNebula 20s infinite alternate ease-in-out;
-}
-.nebula-1 { top: -10%; left: -10%; animation-delay: 0s; }
-.nebula-2 { bottom: -10%; right: -10%; background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(0,0,0,0) 70%); animation-delay: -5s; }
-
-@keyframes fly {
-    from { transform: translateY(100vh) scale(0.5); opacity: 0.2; }
-    50% { opacity: 0.8; }
-    to { transform: translateY(-100vh) scale(1.2); opacity: 0; }
-}
-@keyframes floatNebula {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(80px, 50px) scale(1.2); }
+@keyframes fade {
+    0% { transform: translate(0, -10px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translate(100px, 100vh) rotate(360deg); opacity: 0; }
 }
 
 /* MÀN HÌNH TRẮC NGHIỆM XÁC MINH BAN ĐẦU */
@@ -68,7 +51,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #060211;
+    background: #fdfbf7;
     transition: all 0.8s cubic-bezier(0.74, 0.03, 0.29, 1.01);
 }
 .auth-card {
@@ -76,16 +59,16 @@ body {
     padding: 40px;
     max-width: 480px;
     width: 90%;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 32px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    box-shadow: 0 20px 40px rgba(148, 163, 184, 0.15);
 }
 .auth-card h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 800;
-    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    background: linear-gradient(90deg, #38bdf8, #ec4899, #f59e0b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
@@ -99,20 +82,22 @@ body {
 .quiz-btn {
     width: 100%;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
-    color: white;
+    color: #475569;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
     padding-left: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 .quiz-btn:hover {
-    background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
-    border-color: #a855f7;
+    background: linear-gradient(90deg, #f0f9ff, #fdf2f2);
+    border-color: #f48ff5;
+    color: #0284c7;
     transform: translateX(5px);
 }
 #error-msg {
@@ -131,73 +116,74 @@ body {
     transform: translateY(20px); 
     transition: all 1s ease; 
 }
-header { height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
-header h2 { font-size: 76px; font-weight: 800; background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-header p { max-width: 600px; margin-top: 18px; font-size: 18px; color: #94a3b8; }
-.nickname { margin-top: 25px; padding: 8px 22px; background: rgba(250, 204, 21, 0.1); border: 1px solid #facc15; border-radius: 50px; color: #facc15; font-weight: 600; }
+header { height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+header h2 { font-size: 80px; font-weight: 800; background: linear-gradient(90deg, #0284c7, #ec4899, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -2px; }
+header p { max-width: 600px; margin-top: 15px; font-size: 18px; color: #64748b; line-height: 1.6; }
+.nickname { margin-top: 25px; padding: 10px 24px; background: #fef3c7; border: 1px solid #f59e0b; border-radius: 50px; color: #d97706; font-weight: 600; font-size: 15px; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.15); }
 
-section { padding: 40px 5% 100px 5%; }
-.title { text-align: center; font-size: 34px; margin-bottom: 50px; font-weight: 700; position: relative; }
-.title::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #a855f7; }
+section { padding: 20px 5% 100px 5%; }
+.title { text-align: center; font-size: 32px; margin-bottom: 50px; font-weight: 800; color: #1e293b; position: relative; }
+.title::after { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); width: 50px; height: 5px; background: #f48ff5; border-radius: 10px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
 
-/* THẺ THÀNH VIÊN */
+/* THỂ THÀNH VIÊN KIỂU SÁNG SỦA */
 .member {
-    background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.75); border: 1px solid #f1f5f9;
     border-radius: 24px; padding: 30px 25px; text-align: center; backdrop-filter: blur(10px);
-    transition: all 0.4s ease; position: relative; overflow: hidden; cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; cursor: pointer;
+    box-shadow: 0 10px 25px rgba(148, 163, 184, 0.05);
 }
-.member:hover { transform: translateY(-10px); border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
+.member:hover { transform: translateY(-8px); border-color: #f48ff5; box-shadow: 0 20px 35px rgba(244, 143, 177, 0.2); }
 
-.teacher-card { grid-column: 1 / -1; max-width: 420px; margin: 0 auto 25px auto; border: 1px solid rgba(250, 204, 21, 0.25); }
-.teacher-avatar { background: linear-gradient(135deg, #facc15, #f97316) !important; }
-.teacher-tag { background: rgba(250, 204, 21, 0.12) !important; border: 1px solid #facc15; color: #facc15 !important; }
+.teacher-card { grid-column: 1 / -1; max-width: 420px; margin: 0 auto 25px auto; border: 1px solid #fef3c7; background: rgba(255, 254, 243, 0.9); }
+.teacher-avatar { background: linear-gradient(135deg, #fcd34d, #f97316) !important; }
+.teacher-tag { background: #fef3c7 !important; border: 1px solid #f59e0b; color: #b45309 !important; }
 
-.avatar-box { width: 105px; height: 105px; margin: 0 auto 18px auto; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #a855f7, #ec4899); }
-.avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-.mem-name { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-.mem-role { font-size: 12px; text-transform: uppercase; color: #38bdf8; font-weight: 600; margin-bottom: 16px; }
-.mem-desc { font-size: 14px; color: #94a3b8; line-height: 1.5; min-height: 42px; }
-.tag { display: inline-block; padding: 5px 14px; background: rgba(255, 255, 255, 0.06); border-radius: 50px; font-size: 12px; margin-top: 18px; font-weight: 600; }
+.avatar-box { width: 100px; height: 100px; margin: 0 auto 18px auto; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #38bdf8, #f48ff5); box-shadow: 0 8px 15px rgba(56, 189, 248, 0.15); }
+.avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #fff; }
+.mem-name { font-size: 19px; font-weight: 700; color: #1e293b; margin-bottom: 6px; }
+.mem-role { font-size: 13px; color: #0284c7; font-weight: 600; margin-bottom: 16px; background: #e0f2fe; display: inline-block; padding: 2px 12px; border-radius: 20px; }
+.mem-desc { font-size: 14px; color: #64748b; line-height: 1.6; min-height: 44px; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tag { display: inline-block; padding: 5px 14px; background: #f1f5f9; color: #475569; border-radius: 50px; font-size: 12px; margin-top: 18px; font-weight: 600; }
 
-/* KHUNG POPUP CHI TIẾT */
+/* KHUNG POPUP CHI TIẾT SÁNG SỦA */
 #modal-overlay {
-    position: fixed; inset: 0; background: rgba(3, 1, 10, 0.85);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
     z-index: 10000; display: flex; justify-content: center; align-items: center;
-    opacity: 0; visibility: hidden; transition: all 0.5s ease; padding: 20px;
+    opacity: 0; visibility: hidden; transition: all 0.4s ease; padding: 20px;
 }
 #modal-overlay.active { opacity: 1; visibility: visible; }
 .modal-content {
-    background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 32px; width: 100%; max-width: 550px; padding: 35px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8); text-align: center;
-    position: relative; transform: translateY(50px) scale(0.9); transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: #ffffff; border: 1px solid #e2e8f0;
+    border-radius: 32px; width: 100%; max-width: 520px; padding: 35px;
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.1); text-align: center;
+    position: relative; transform: translateY(30px) scale(0.95); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 #modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
 .close-modal {
-    position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
-    background: rgba(255,255,255,0.05); border: none; border-radius: 50%;
-    color: white; font-size: 20px; cursor: pointer; transition: 0.3s;
+    position: absolute; top: 20px; right: 20px; width: 36px; height: 36px;
+    background: #f1f5f9; border: none; border-radius: 50%;
+    color: #64748b; font-size: 16px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center;
 }
-.close-modal:hover { background: #ef4444; transform: rotate(90deg); }
-.modal-avatar { width: 130px; height: 130px; margin: 0 auto 20px auto; border-radius: 50%; padding: 5px; background: linear-gradient(135deg, #06b6d4, #9333ea); }
-.modal-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-.modal-history { text-align: left; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 16px; margin: 20px 0; font-size: 14px; color: #cbd5e1; line-height: 1.6; border-left: 4px solid #a855f7; }
+.close-modal:hover { background: #fee2e2; color: #ef4444; transform: rotate(90deg); }
+.modal-avatar { width: 120px; height: 120px; margin: 0 auto 20px auto; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #3b82f6, #ec4899); }
+.modal-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: white; }
+.modal-history { text-align: left; background: #f8fafc; padding: 20px; border-radius: 18px; margin: 20px 0; font-size: 14px; color: #475569; line-height: 1.6; border-left: 4px solid #38bdf8; }
 .ability-section { text-align: left; margin-top: 20px; }
-.ability-title { font-size: 14px; font-weight: 700; color: #facc15; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;}
+.ability-title { font-size: 13px; font-weight: 700; color: #b45309; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;}
 .skill-bar-wrapper { margin-bottom: 12px; }
-.skill-info { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; color: #e2e8f0; }
-.skill-track { width: 100%; height: 8px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
-.skill-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #3b82f6, #ec4899); border-radius: 10px; transition: width 1s ease-in-out; }
+.skill-info { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; color: #334155; font-weight: 600; }
+.skill-track { width: 100%; height: 8px; background: #e2e8f0; border-radius: 10px; overflow: hidden; }
+.skill-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #38bdf8, #f48ff5); border-radius: 10px; transition: width 1s ease-in-out; }
 
-/* NÚT ĐĨA NHẠC XOAY TRÒN TRÊN GÓC */
+/* ĐĨA NHẠC XOAY TRÒN */
 .music-control {
     position: fixed; bottom: 25px; left: 25px; z-index: 999;
-    width: 54px; height: 54px; background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 50%;
+    width: 54px; height: 54px; background: #ffffff;
+    border: 2px solid #e2e8f0; border-radius: 50%;
     cursor: pointer; display: none; justify-content: center; align-items: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(148,163,184,0.2);
     transition: all 0.3s ease;
 }
 .music-control:hover { transform: scale(1.1); border-color: #ec4899; }
@@ -209,15 +195,12 @@ section { padding: 40px 5% 100px 5%; }
 
 <body>
 
-<div class="star-bg" id="star-container">
-    <div class="nebula nebula-1"></div>
-    <div class="nebula nebula-2"></div>
-</div>
+<div class="falling-bg" id="petal-container"></div>
 
 <div id="auth-page">
     <div class="auth-card">
         <h1>Xác Minh Thành Viên A4K14</h1>
-        <p style="margin-bottom: 20px; color:#cbd5e1;">Để truy cập, vui lòng cho biết ai là Lớp trưởng của A4K14? 🤔</p>
+        <p style="margin-bottom: 20px; color:#64748b; font-weight: 500;">Để vào lớp, vui lòng cho biết ai là Lớp trưởng của A4K14? 🌸</p>
         
         <div class="quiz-options">
             <button class="quiz-btn" onclick="checkAnswer(false)">A. Nguyễn Khánh Huyền</button>
@@ -226,7 +209,7 @@ section { padding: 40px 5% 100px 5%; }
             <button class="quiz-btn" onclick="checkAnswer(false)">D. Võ Ngọc Bảo Trâm</button>
         </div>
         
-        <div id="error-msg">❌ Bạn chọn sai rồi, thành viên A4K14 không thể quên lớp trưởng được! Thử lại xem nào.</div>
+        <div id="error-msg">❌ Bạn chọn chưa đúng rồi, thần dân A4K14 thử lại xem nào!</div>
     </div>
 </div>
 
@@ -241,12 +224,12 @@ section { padding: 40px 5% 100px 5%; }
 <div id="main-page">
     <header>
         <h2>A4K14</h2>
-        <p>Một đại gia đình gồm 42 thành viên cùng người mẹ hiền thứ hai, nơi lưu giữ những kỷ niệm và khả năng độc nhất vô nhị ✨</p>
-        <div class="nickname" id="nick">👑 Lớp trưởng: Đoàn Khánh Thư (Bé bự quyền lực)</div>
+        <p>Thanh xuân rực rỡ dưới mái trường thân yêu cùng 42 người bạn và người mẹ hiền thứ hai, nơi lưu giữ những nụ cười đẹp nhất tuổi học trò 🎒🍃</p>
+        <div class="nickname" id="nick">✨ Lớp trưởng: Đoàn Khánh Thư (Bé bự siêu đáng yêu)</div>
     </header>
 
     <section>
-        <h2 class="title">Đại Gia Đình A4K14</h2>
+        <h2 class="title">Thành Viên Lớp Chúng Mình</h2>
         <div id="teacher-section"></div>
         <div class="grid" id="list"></div>
     </section>
@@ -256,28 +239,37 @@ section { padding: 40px 5% 100px 5%; }
     <div class="modal-content" onclick="event.stopPropagation()">
         <button class="close-modal" onclick="toggleModal(false)">✕</button>
         <div class="modal-avatar"><img id="m-img" src="" alt=""></div>
-        <h2 id="m-name" style="font-size: 26px; font-weight:700;"></h2>
-        <div id="m-role" style="font-size: 13px; color:#38bdf8; font-weight:600; margin-top:5px; text-transform:uppercase;"></div>
+        <h2 id="m-name" style="font-size: 24px; font-weight:700; color: #1e293b;"></h2>
+        <div id="m-role" style="font-size: 13px; color:#0284c7; font-weight:600; margin-top:5px;"></div>
         
         <div class="modal-history">
-            <strong style="color: #a855f7;">Lịch sử & Tính cách:</strong>
+            <strong style="color: #0284c7;">Kỷ niệm & Tính cách thanh xuân:</strong>
             <p id="m-history" style="margin-top: 5px;"></p>
         </div>
 
         <div class="ability-section">
-            <div class="ability-title">Chỉ Số Khả Năng</div>
+            <div class="ability-title">Điểm Thi Ba Môn</div>
             <div id="m-skills"></div>
         </div>
     </div>
 </div>
 
 <script>
-// Tạo hiệu ứng nền động
-const starContainer = document.getElementById("star-container");
-for(let i = 0; i < 90; i++) {
-    let star = document.createElement("div"); star.classList.add("star");
-    star.style.left = Math.random() * 100 + "vw"; star.style.animationDuration = (4 + Math.random() * 6) + "s";
-    starContainer.appendChild(star);
+// Tạo hiệu ứng cánh hoa đào rơi lãng mạn
+const petalContainer = document.getElementById("petal-container");
+const petalColors = ['#f48ff5', '#fbcfe8', '#ffe4e6', '#fed7aa'];
+for(let i = 0; i < 40; i++) {
+    let petal = document.createElement("div"); 
+    petal.classList.add("petal");
+    petal.style.left = Math.random() * 100 + "vw"; 
+    petal.style.top = -Math.random() * 20 + "px";
+    let size = (8 + Math.random() * 12) + "px";
+    petal.style.width = size;
+    petal.style.height = size;
+    petal.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+    petal.style.animationDuration = (6 + Math.random() * 8) + "s";
+    petal.style.animationDelay = Math.random() * 5 + "s";
+    petalContainer.appendChild(petal);
 }
 
 // KIỂM TRA ĐÁP ÁN TRẮC NGHIỆM
@@ -308,26 +300,22 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 function verifySuccess() {
-    // 1. Ẩn màn hình trắc nghiệm
     const authPage = document.getElementById("auth-page");
     authPage.style.opacity = "0";
     authPage.style.transform = "scale(0.9) translateY(-30px)";
     setTimeout(() => { authPage.style.display = "none"; }, 800);
 
-    // 2. Hiện giao diện chính
     const mainPage = document.getElementById("main-page");
     mainPage.style.opacity = "1";
     mainPage.style.transform = "translateY(0)";
 
-    // 3. Hiện nút đĩa nhạc xoay ở góc dưới bên trái
     musicBtn.style.display = "flex";
 
-    // 4. PHÁT NHẠC NGAY LẬP TỨC
     myAudio.play().then(() => {
         musicBtn.classList.add("rotate-music");
         musicStatus.innerText = "⏸️";
     }).catch(err => {
-        console.log("Trình duyệt chặn phát nhạc", err);
+        console.log("Trình duyệt chặn phát nhạc tự động", err);
     });
 }
 
@@ -346,180 +334,55 @@ function toggleMusic() {
 
 // DỮ LIỆU GIÁO VIÊN CHỦ NHIỆM
 const teacherData = {
-    name: "Cô Hiếu", role: "Giáo Viên Chủ Nhiệm", desc: "Người mẹ thứ hai bao dung, hết lòng vì A4K14.", tag: "❤️ Mẹ Hiền", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150",
-    history: "Gắn bó và dìu dắt lớp từ những bước đi đầu tiên. Luôn là điểm tựa tinh thần lớn nhất, nghiêm khắc đúng lúc nhưng yêu thương thì vô hạn.",
-    skills: [{n: "Yêu thương lớp", v: "100%"}, {n: "Tâm lý & Thấu hiểu", v: "95%"}, {n: "Sát sao quản lý", v: "90%"}]
+    name: "Cô Hiếu", role: "Giáo Viên Chủ Nhiệm Lớp 8D", desc: "Người mẹ thứ hai dịu dàng, luôn hết lòng chăm lo cho đàn con thơ.", tag: "❤️ Người Mẹ Hiền", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HieuTeacher",
+    history: "Cô Hiếu kính yêu luôn đồng hành, che chở và tiếp thêm động lực cho tập thể lớp 8D vượt qua mọi kỳ thi bằng tình yêu thương đong đầy.",
+    skills: [{n: "Yêu thương lớp học", v: "100%"}, {n: "Thấu hiểu học trò", v: "98%"}, {n: "Tâm huyết dạy dỗ", v: "100%"}]
 };
 
-// DANH SÁCH 42 THÀNH VIÊN ĐẦY ĐỦ THEO BẢNG ĐIỂM
+// DANH SÁCH 42 THÀNH VIÊN VỚI TIỂU SỬ THANH XUÂN TƯƠI SÁNG
 const fullClassData = [
-    { name: "Nguyễn Thị Bảo An", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Bao+An",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "90%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Nguyễn Khánh Huyền", role: "Lớp Phó", desc: "Cánh tay phải đắc lực, luôn chu đáo quán xuyến việc lớp.", tag: "✨ Chu Đáo", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150",
-      history: "Thầm lặng phía sau hỗ trợ lớp trưởng, người giữ sổ sách siêu cấp cẩn thận và lo liệu mọi kế hoạch vui chơi của tập thể.",
-      skills: [{n: "Quản lý thu chi", v: "92%"}, {n: "Hỗ trợ đồng đội", v: "95%"}, {n: "Nghị lực", v: "88%"}] },
-      
-    { name: "Lê Kiều Chi", role: "Tổ phó", desc: "Hoàn thành xuất sắc nhiệm vụ, khéo léo.", tag: "🎵 Khéo Léo", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150",
-      history: "Đôi tay vô cùng khéo léo, chuyên gia trang trí báo tường và chuẩn bị đạo cụ cho các sự kiện lớn nhỏ của lớp.",
-      skills: [{n: "Khéo tay", v: "95%"}, {n: "Sáng tạo nghệ thuật", v: "91%"}, {n: "Kiên nhẫn", v: "88%"}] },
-      
-    { name: "Lê Thị Hà Giang", role: "Tổ trưởng", desc: "Mảnh ghép tuyệt vời, thầm lặng lo toan cho nhóm.", tag: "🌸 Tình Cảm", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150",
-      history: "Sống nội tâm, tình cảm và cực kỳ thương các thành viên trong tổ. Luôn là người đứng ra hòa giải mỗi khi trong tổ có bất đồng.",
-      skills: [{n: "Lắng nghe", v: "95%"}, {n: "Hòa giải", v: "90%"}, {n: "Chăm chỉ", v: "87%"}] },
-      
-    { name: "Đoàn Khánh Thư", role: "Lớp trưởng & Tổ trưởng", desc: "Người đứng đầu quyền lực, gánh vác cả lớp xuất sắc.", tag: "👑 Quyền Lực", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
-      history: "Nổi tiếng với khả năng quản lý lớp cực kỳ uy nghiêm. Luôn có mặt giải quyết mọi lục đục nội bộ và là chỗ dựa cho cả nhóm cán sự.",
-      skills: [{n: "Lãnh đạo", v: "95%"}, {n: "Trách nhiệm", v: "98%"}, {n: "Hét ra lửa", v: "85%"}] },
-      
-    { name: "Nguyễn Minh Quân", role: "Thành viên", desc: "Mảnh ghép năng nổ, hết mình trong hoạt động chung.", tag: "⚡ Năng Động", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
-      history: "Thành viên tích cực trong mọi giải đấu thể thao và phong trào thi đua. Tinh thần đồng đội cực cao, không bao giờ bỏ cuộc.",
-      skills: [{n: "Thể lực", v: "92%"}, {n: "Gánh team", v: "88%"}, {n: "Nhiệt tình", v: "95%"}] },
-      
-    { name: "Trần Thị Phương Mai", role: "Tổ trưởng", desc: "Luôn vui vẻ, hòa đồng và tràn đầy năng lượng.", tag: "☀️ Năng Lượng", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150",
-      history: "Trùm tạo tiếng cười cho tổ, đi tới đâu là có năng lượng tích cực tới đó. Rất năng nổ tham gia phát biểu xây dựng bài.",
-      skills: [{n: "Tạo tiếng cười", v: "96%"}, {n: "Giao tiếp", v: "90%"}, {n: "Năng nổ", v: "92%"}] },
-      
-    { name: "Trần Thảo Nguyên", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thao+Nguyen",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "88%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Thị Quỳnh Như", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Quynh+Nhu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Thị Thuỳ Linh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thuy+Linh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "87%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Dương Ngọc Minh Thư", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Minh+Thu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "89%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Nguyễn Quang Huy", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Quang+Huy",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "86%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Phan Dương Hoàng", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Duong+Hoang",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Văn Thành", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Van+Thanh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "88%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Anh Thư", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Anh+Thu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "91%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lương Thanh Tuấn", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thanh+Tuan",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "84%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Hoàng Mai Việt Hoà", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Viet+Hoa",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "86%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Nguyễn Gia Khang", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Gia+Khang",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Nguyễn An Ngọc", role: "Tổ phó", desc: "Tính tình nhẹ nhàng, được mọi người quý mến.", tag: "🍃 Nhẹ Nhàng", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150",
-      history: "Giọng nói ngọt ngào, dịu dàng chuẩn 'con nhà người ta'. Luôn xử lý mọi tình huống bằng sự bình tĩnh và nụ cười thân thiện.",
-      skills: [{n: "Bình tĩnh", v: "94%"}, {n: "Thân thiện", v: "96%"}, {n: "Thuyết phục", v: "82%"}] },
-      
-    { name: "Trần Thị Mai Linh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Mai+Linh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "88%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lương Thanh Tú", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thanh+Tu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "87%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Dương Lê Thông", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Le+Thong",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "86%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Quốc Đạt", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Quoc+Dat",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "89%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Quang Hải", role: "Thành viên", desc: "Trùm công nghệ của lớp, máy móc cứ để Hải lo.", tag: "💻 Dân Công Nghệ", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-      history: "Chuyên gia kỹ thuật đứng sau các slide thuyết trình đỉnh cao của lớp. Máy tính đóng băng, mất file hay hỏng projector chỉ 5 phút là Hải sửa xong.",
-      skills: [{n: "Fix phần cứng", v: "96%"}, {n: "Code / Hack game", v: "90%"}, {n: "Cứu file khẩn cấp", v: "94%"}] },
-      
-    { name: "Võ Trọng Phát", role: "Thành viên", desc: "Luôn sát cánh cùng lớp trong mọi chặng đường.", tag: "🤝 Đồng Đội", img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150",
-      history: "Người anh em uy tín, gọi là có mặt, trực nhật hộ bạn không một lời than thở. Tình nghĩa anh em sắt son, luôn bênh vực bạn bè.",
-      skills: [{n: "Uy tín", v: "95%"}, {n: "Trực nhật tốc độ", v: "90%"}, {n: "Độ bền bỉ", v: "87%"}] },
-      
-    { name: "Võ Ngọc Bảo Trâm", role: "Tổ trưởng", desc: "Tổ trưởng gương mẫu, trách nhiệm vô cùng.", tag: "🔥 Trách Nhiệm", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-      history: "Luôn kiểm tra bài tập thành viên đầy đủ trước khi vào tiết. Khét tiếng công bằng, không bao giờ bao che cho thành viên lười biếng.",
-      skills: [{n: "Nghiêm túc", v: "90%"}, {n: "Nhắc nhở bài vở", v: "94%"}, {n: "Bao dung", v: "80%"}] },
-      
-    { name: "Trần Thị Mai Hương", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Mai+Huong",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "88%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Đậu Ngọc Anh Thư", role: "Thành viên", desc: "Cô bạn dễ mến, chăm chỉ và đáng tin cậy.", tag: "📚 Chăm Chỉ", img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150",
-      history: "Vở sạch chữ đẹp nhất nhì lớp. Mỗi mùa thi cử, tập vở của Thư luôn là bảo vật được cả lớp mượn để photocopy ôn tập.",
-      skills: [{n: "Ghi chép bài", v: "97%"}, {n: "Tập trung cao", v: "90%"}, {n: "Giúp đỡ bạn học", v: "93%"}] },
-      
-    { name: "Dương Thị Mai", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thi+Mai",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Đặng Nhật Minh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Nhat+Minh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "84%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Thị Mai Phương", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Mai+Phuong",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "89%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Thị Ngọc Linh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Ngoc+Linh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "87%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Anh Quân", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Anh+Quan",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "86%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Nhật Thiên", role: "Thành viên", desc: "Chàng trai hòa đồng, mang năng lượng tích cực.", tag: "🌟 Thân Thiện", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150",
-      history: "Bạn quốc dân của cả lớp, ai cũng có thể bắt chuyện và chia sẻ. Tính cách phóng khoáng, dễ gần và cực kỳ tốt bụng.",
-      skills: [{n: "Bắt chuyện", v: "95%"}, {n: "Hài hước nhẹ", v: "85%"}, {n: "Lắng nghe tâm sự", v: "90%"}] },
-      
-    { name: "Nguyễn Thị Thuỷ Linh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Thuy+Linh+N",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Viết Thắng", role: "Thành viên", desc: "Tính cách điềm đạm, ga lăng với bạn bè.", tag: "🕺 Ga Lăng", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150",
-      history: "Chàng trai ga lăng chuyên bê nước, chuyển bàn ghế giúp các bạn nữ trong lớp. Nói ít làm nhiều, hành xử vô cùng chín chắn.",
-      skills: [{n: "Ga lăng", v: "96%"}, {n: "Điềm tĩnh", v: "90%"}, {n: "Đẹp trai lực điền", v: "85%"}] },
-      
-    { name: "Vương Văn Hiếu", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Van+Hieu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "84%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Lê Hải Yến", role: "Tổ phó", desc: "Hỗ trợ quản lý tổ siêu đỉnh, nhiệt huyết.", tag: "💪 Nhiệt Huyết", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
-      history: "Cánh tay phải của tổ trưởng, chuyên gia săn tìm tài liệu bài tập cho tổ và đôn đốc các thành viên hoàn thành nhiệm vụ đúng hạn.",
-      skills: [{n: "Đôn đốc", v: "89%"}, {n: "Hỗ trợ bài tập", v: "93%"}, {n: "Năng động", v: "85%"}] },
-      
-    { name: "Lê Huyền Sang", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Huyen+Sang",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "85%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Bình Minh", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Binh+Minh",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "86%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Phạm Hoàng Việt", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Hoang+Viet",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "83%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] },
-      
-    { name: "Trần Thị Hải Hiệu", role: "Thành viên", desc: "Mảnh ghép tuyệt vời của đại gia đình A4K14.", tag: "✨ Thành Viên", img: "https://placehold.co/150x150/1e1b4b/ffffff?text=Hai+Hieu",
-      history: "Thành viên chính thức thuộc đại gia đình 42 thành viên A4K14. Luôn đóng góp thầm lặng tạo nên sức mạnh tập thể của lớp.",
-      skills: [{ n: "Chăm Chỉ", v: "82%" }, { n: "Đoàn Kết", v: "95%" }, { n: "Tiềm Năng", v: "100%" }] }
+    { name: "Nguyễn Thị Bảo An", rank: 1, total: 23.25, role: "Học sinh lớp 8D", desc: "Ngôi sao học đường lung linh, học giỏi toàn diện khiến ai cũng ngưỡng mộ.", tag: "🌸 Thủ Khoa Đáng Yêu", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=BaoAn", history: "Bảo An là cô bạn dễ mến, sở hữu bảng thành tích học tập chuẩn 'con nhà người ta' nhưng tính cách cực kỳ khiêm tốn, dễ gần.", skills: [{n: "Toán (7.25)", v: "72.5%"}, {n: "Văn (8.0)", v: "80%"}, {n: "Anh (8.0)", v: "80%"}] },
+    { name: "Nguyễn Khánh Huyền", rank: 2, total: 22.75, role: "Lớp Phó học tập", desc: "Nữ cán sự học tập chăm chỉ, luôn rạng rỡ và sẵn lòng giúp đỡ bạn bè.", tag: "🌟 Á Khoa Tỏa Sáng", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=KhanhHuyen", history: "Vừa học siêu giỏi vừa dịu dàng, Khánh Huyền chính là chỗ dựa học tập cực kỳ uy tín của cả lớp mỗi khi mùa thi cử tới gần.", skills: [{n: "Toán (7.75)", v: "77.5%"}, {n: "Văn (8.0)", v: "80%"}, {n: "Anh (7.0)", v: "70%"}] },
+    { name: "Lê Kiều Chi", rank: 3, total: 22.0, role: "Tổ phó", desc: "Cô bạn khéo tay, năng nổ và luôn ngập tràn năng lượng tích cực.", tag: "🎀 Mảnh Ghép Ngọt Ngào", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=KieuChi", history: "Kiều Chi luôn mang nụ cười tươi tắn tới lớp. Cô bạn vừa hoàn thành tốt việc tổ, lại vừa có tinh thần tự học siêu đỉnh để giữ vững Top 3.", skills: [{n: "Toán (7.5)", v: "75%"}, {n: "Văn (8.0)", v: "80%"}, {n: "Anh (6.5)", v: "65%"}] },
+    { name: "Lê Thị Hà Giang", rank: 4, total: 20.75, role: "Tổ trưởng", desc: "Nữ tổ trưởng thông minh với tư duy Toán học logic đỉnh cao.", tag: "⚡ Chiến Thần Toán Học", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HaGiang", history: "Hà Giang làm lớp mình trầm trồ vì khả năng giải toán siêu nhanh nhạy cùng tác phong nhanh nhẹn, gương mẫu trong mọi hoạt động.", skills: [{n: "Toán (8.75)", v: "87.5%"}, {n: "Văn (7.0)", v: "70%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Đoàn Khánh Thư", rank: 5, total: 19.0, role: "Lớp trưởng quyền lực", desc: "Vị thủ lĩnh đáng yêu, người kết nối 42 trái tim của gia đình lớp mình.", tag: "👑 Lớp Trưởng Tuyệt Vời", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=KhanhThu", history: "Lớp trưởng 'Bé bự siêu cấp đáng yêu' gánh vác mọi trọng trách của lớp cực tốt, luôn công bằng, bao dung và hết mình vì tập thể bè bạn.", skills: [{n: "Toán (5.75)", v: "57.5%"}, {n: "Văn (8.0)", v: "80%"}, {n: "Anh (5.25)", v: "52.5%"}] },
+    { name: "Nguyễn Minh Quân", rank: 6, total: 18.5, role: "Thành viên tích cực", desc: "Chàng trai vui tính, tràn đầy sức sống tuổi trẻ và đam mê phong trào.", tag: "🎈 Chàng Trai Năng Động", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=MinhQuan", history: "Minh Quân là người khuấy động bầu không khí trong lớp, đi tới đâu mang niềm vui tới đó và luôn có kết quả học tập ổn định vững vàng.", skills: [{n: "Toán (7.0)", v: "70%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (6.5)", v: "65%"}] },
+    { name: "Trần Thị Phương Mai", rank: 7, total: 18.25, role: "Tổ trưởng", desc: "Tổ trưởng tỏa nắng với tiếng cười giòn giã lan tỏa khắp phòng học.", tag: "☀️ Đại Sứ Tiếng Cười", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=PhuongMai", history: "Hài hước, thân thiện nhưng học hành vô cùng nghiêm túc. Phương Mai có tư duy môn Toán cực kỳ tốt, luôn biết cách động viên mọi người.", skills: [{n: "Toán (7.75)", v: "77.5%"}, {n: "Văn (6.5)", v: "65%"}, {n: "Anh (4.0)", v: "40%"}] },
+    { name: "Trần Thảo Nguyên", rank: 7, total: 18.25, role: "Thành viên", desc: "Cô bạn hiền lành, dịu dàng, âm thầm tỏa sáng trong phòng thi Toán.", tag: "🍃 Dịu Dàng Sâu Lắng", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=ThaoNguyen", history: "Thảo Nguyên sống chan hòa với bạn bè và cực kỳ chăm chỉ. Điểm số Toán 8.25 chính là trái ngọt cho sự nỗ lực bền bỉ của cô bạn xinh xắn này.", skills: [{n: "Toán (8.25)", v: "82.5%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Lê Thị Quỳnh Như", rank: 9, total: 18.0, role: "Thành viên", desc: "Mảnh ghép ngoan ngoãn, hòa đồng, ba môn học đều tăm tắp.", tag: "🌸 Bạn Học Dễ Mến", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=QuynhNhu", history: "Quỳnh Như luôn có thái độ học tập nghiêm túc, tính cách hiền hòa và biết cách dung hòa các môn học một cách xuất sắc.", skills: [{n: "Toán (5.25)", v: "52.5%"}, {n: "Văn (6.0)", v: "60%"}, {n: "Anh (6.75)", v: "67.5%"}] },
+    { name: "Trần Thị Thuỳ Linh", rank: 10, total: 17.75, role: "Thành viên", desc: "Cô gái tự giác, khẳng định bản thân xuất sắc trong Top 10 học tốt.", tag: "⭐ Ngôi Sao Ý Thức", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=ThuyLinh1", history: "Thùy Linh ghi điểm bởi sự chăm chỉ gom góp kiến thức mỗi ngày. Chúc mừng cô bạn đã đạt thành tích thi cử ngọt ngào xứng đáng mong đợi.", skills: [{n: "Toán (7.5)", v: "75%"}, {n: "Văn (6.5)", v: "65%"}, {n: "Anh (3.75)", v: "37.5%"}] },
+    { name: "Dương Ngọc Minh Thư", rank: 11, total: 17.5, role: "Thành viên", desc: "Nàng thơ Ngữ Văn với tâm hồn mơ mộng và nét vẽ bài học siêu đẹp.", tag: "📝 Nàng Thơ Văn Chương", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=MinhThuD", history: "Minh Thư có những bài viết văn dạt dào cảm xúc đạt điểm số 7.0 đầy tự hào, mang lại nét nhẹ nhàng bay bổng cho tổ ấm lớp mình.", skills: [{n: "Toán (6.5)", v: "65%"}, {n: "Văn (7.0)", v: "70%"}, {n: "Anh (4.0)", v: "40%"}] },
+    { name: "Nguyễn Quang Huy", rank: 12, total: 16.5, role: "Thành viên", desc: "Chàng trai hoạt bát, học ngoại ngữ siêu nhạy bén và vui tính.", tag: "🌿 Tươi Vui Hồn Nhiên", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=QuangHuy", history: "Quang Huy luôn là tâm điểm của tiếng cười mỗi giờ ra chơi. Sự thông minh trong môn Tiếng Anh giúp cậu học tập nhẹ nhàng, thoải mái.", skills: [{n: "Toán (5.25)", v: "52.5%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (6.25)", v: "62.5%"}] },
+    { name: "Phan Dương Hoàng", rank: 13, total: 16.25, role: "Thành viên", desc: "Cậu bạn cầu tiến, từng bước tiến bộ bền bỉ qua từng kỳ thi.", tag: "🏃 Tinh Thần Bứt Phá", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=DuongHoang", history: "Dương Hoàng luôn kiên nhẫn tích lũy bài học và đạt kết quả kiểm tra rất vững vàng ở cả 3 môn, luôn có tinh thần tự giác cao.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (5.75)", v: "57.5%"}, {n: "Anh (5.5)", v: "55%"}] },
+    { name: "Lê Văn Thành", rank: 14, total: 15.5, role: "Thành viên", desc: "Học giỏi đều hai khối tự nhiên - xã hội một cách tài tình.", tag: "☘️ Học Tập Chăm Ngoan", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=VanThanh", history: "Văn Thành luôn hăng hái phát biểu bài trên lớp. Sự chăm chỉ giúp cậu bạn ẵm trọn điểm số ấn tượng ở cả môn Toán và Văn.", skills: [{n: "Toán (7.0)", v: "70%"}, {n: "Văn (6.5)", v: "65%"}, {n: "Anh (2.0)", v: "20%"}] },
+    { name: "Lê Anh Thư", rank: 15, total: 15.25, role: "Thành viên", desc: "Cô bạn hiền thục, tuân thủ kỷ luật và học hành siêu cẩn thận.", tag: "📖 Chăm Chỉ Chuyên Cần", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=AnhThuL", history: "Anh Thư có ý thức học tập cực kỳ nghiêm túc. Tập vở ghi chép của cô bạn luôn đầy đủ, điểm Ngữ Văn 7.0 khiến ai nấy đều tấm tắc.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (7.0)", v: "70%"}, {n: "Anh (3.25)", v: "32.5%"}] },
+    { name: "Lương Thanh Tuấn", rank: 16, total: 15.0, role: "Thành viên", desc: "Bậc thầy cân bằng, ba môn đều chằn chặn ngập tràn nỗ lực.", tag: "🤝 Cân Bằng Đồng Đều", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=ThanhTuan", history: "Thanh Tuấn tạo ấn tượng với phong độ làm bài thi vô cùng ổn định. Bạn luôn giữ sự điềm tĩnh, chan hòa với tất cả mọi người.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Hoàng Mai Việt Hoà", rank: 17, total: 14.5, role: "Thành viên", desc: "Chàng trai ấm áp, học ngoại ngữ có năng khiếu nổi trội.", tag: "🌻 Thân Thiện Dễ Mến", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=VietHoa", history: "Việt Hòa luôn sẵn lòng sẻ chia cùng bạn bè. Điểm Tiếng Anh khá tốt cho thấy sự yêu thích và tư duy ngôn ngữ nhạy bén của cậu bạn.", skills: [{n: "Toán (4.25)", v: "42.5%"}, {n: "Văn (4.25)", v: "42.5%"}, {n: "Anh (6.0)", v: "60%"}] },
+    { name: "Nguyễn Gia Khang", rank: 17, total: 14.5, role: "Thành viên", desc: "Âm thầm nỗ lực và luôn hoàn thành trách nhiệm với tập thể.", tag: "🌿 Đáng Tin Cậy", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=GiaKhang", history: "Gia Khang ngoan ngoãn và biết nghĩ cho lớp, điểm số phân phối đồng đều thể hiện sự cân bằng tốt giữa các môn học.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (4.5)", v: "45%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Nguyễn An Ngọc", rank: 17, total: 14.5, role: "Tổ phó nhẹ nhàng", desc: "Tổ phó hiền lành với giọng nói ngọt ngào, dịu dàng.", tag: "🍃 Cơn Gió Mát Lành", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=AnNgoc", history: "An Ngọc mang đến sự êm dịu cho lớp, học rất giỏi Toán và Anh Văn, là nhân tố chu đáo dìu dắt các thành viên trong tổ vươn lên.", skills: [{n: "Toán (6.5)", v: "65%"}, {n: "Văn (2.0)", v: "20%"}, {n: "Anh (6.0)", v: "60%"}] },
+    { name: "Trần Thị Mai Linh", rank: 20, total: 14.25, role: "Thành viên", desc: "Chăm chỉ học tập, giữ vững phong độ an toàn ổn định.", tag: "🌸 Đóa Hoa Cần Cù", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=MaiLinhT", history: "Mai Linh ghi dấu ấn bằng sự tỉ mỉ, cẩn thận. Bạn luôn giữ vững phong độ ổn định ở hai môn cốt lõi Toán và Ngữ Văn.", skills: [{n: "Toán (5.75)", v: "57.5%"}, {n: "Văn (5.5)", v: "55%"}, {n: "Anh (3.0)", v: "30%"}] },
+    { name: "Lương Thanh Tú", rank: 20, total: 14.25, role: "Thành viên", desc: "Tinh thần phấn đấu cao, tư duy học toán sáng rực rỡ.", tag: "✨ Ý Chí Tiến Thủ", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=ThanhTuL", history: "Thanh Tú luôn tiến về phía trước với mục tiêu rõ ràng. Điểm thi Toán 6.5 phản chiếu bộ óc logic nhạy bén của cậu học trò chăm chỉ.", skills: [{n: "Toán (6.5)", v: "65%"}, {n: "Văn (3.25)", v: "32.5%"}, {n: "Anh (4.5)", v: "45%"}] },
+    { name: "Dương Lê Thông", rank: 22, total: 14.0, role: "Thành viên", desc: "Chàng trai trượng nghĩa, luôn thầm lặng giúp đỡ bạn bè.", tag: "🤗 Ấm Áp Tốt Bụng", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=LeThong", history: "Lê Thông có tính cách vô cùng tốt bụng, bạn luôn xung phong hỗ trợ việc trực nhật hay dọn dẹp lớp học mà chẳng chút đắn đo.", skills: [{n: "Toán (5.5)", v: "55%"}, {n: "Văn (4.0)", v: "40%"}, {n: "Anh (4.5)", v: "45%"}] },
+    { name: "Lê Quốc Đạt", rank: 23, total: 13.75, role: "Thành viên", desc: "Nụ cười rạng rỡ, mang năng lượng vui tươi tới cho cả lớp.", tag: "☀️ Tia Nắng Nhỏ", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=QuocDat", history: "Quốc Đạt rất nhanh nhẹn và năng nổ bắt chuyện với mọi người, điểm số môn Toán khá tốt là thành quả xứng đáng cho nỗ lực của cậu.", skills: [{n: "Toán (6.25)", v: "62.5%"}, {n: "Văn (4.0)", v: "40%"}, {n: "Anh (3.5)", v: "35%"}] },
+    { name: "Trần Quang Hải", rank: 23, total: 13.75, role: "Trùm Công Nghệ Lớp", desc: "Kỹ sư phần cứng thế hệ mới, máy chiếu slide cứ để Hải lo.", tag: "💻 Trùm Công Nghệ", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=QuangHai", history: "Chuyên gia kỹ thuật độc nhất vô nhị của lớp 8D, người đứng sau các buổi thuyết trình mượt mà. Hải sở hữu tư duy thuật toán và logic cực xịn.", skills: [{n: "Toán (6.25)", v: "62.5%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (2.5)", v: "25%"}] },
+    { name: "Võ Trọng Phát", rank: 25, total: 13.5, role: "Thành viên", desc: "Người bạn uy tín, nhiệt tình ga lăng lọt top khá Tiếng Anh.", tag: "🎈 Đồng Đội Đáng Tin", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=TrongPhat", history: "Trọng Phát nổi tiếng vui vẻ và ga lăng, sẵn sàng giúp đỡ các bạn nữ trong lớp và học ngoại ngữ với phản xạ vô cùng tự nhiên.", skills: [{n: "Toán (3.75)", v: "37.5%"}, {n: "Văn (4.0)", v: "40%"}, {n: "Anh (5.75)", v: "57.5%"}] },
+    { name: "Võ Ngọc Bảo Trâm", rank: 25, total: 13.5, role: "Tổ trưởng gương mẫu", desc: "Tổ trưởng trách nhiệm, điều hành tổ bằng sự ngọt ngào, công tâm.", tag: "🔥 Thủ Lĩnh Trách Nhiệm", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=BaoTram", history: "Sở hữu tinh thần trách nhiệm cực cao, Bảo Trâm luôn nhẹ nhàng đôn đốc, sát cánh giúp tập thể tổ cùng tiến bộ qua các kỳ kiểm tra.", skills: [{n: "Toán (4.0)", v: "40%"}, {n: "Văn (4.5)", v: "45%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Trần Thị Mai Hương", rank: 27, total: 13.25, role: "Thành viên", desc: "Cô bạn nhỏ nhẹ, có thiên hướng tốt về khối Xã hội.", tag: "🌸 Hòa Nhã Chan Hòa", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=MaiHuong", history: "Mai Hương tiếp thu các bài giảng Ngữ Văn rất nhanh nhờ sự nhạy cảm, tinh tế. Cô bạn luôn chan hòa, yêu mến tất cả mọi người.", skills: [{n: "Toán (3.0)", v: "30%"}, {n: "Văn (5.25)", v: "52.5%"}, {n: "Anh (5.0)", v: "50%"}] },
+    { name: "Đậu Ngọc Anh Thư", rank: 28, total: 13.0, role: "Thành viên", desc: "Nét chữ nết người, tập vở ghi chép đẹp đẽ như in.", tag: "📚 Vở Sạch Chữ Đẹp", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=AnhThuD", history: "Anh Thư có những trang vở nắn nót, sạch đẹp chuẩn chỉ. Cô bạn sở hữu điểm Văn 5.5 rất khá khẩm nhờ học hành chuyên tâm.", skills: [{n: "Toán (4.0)", v: "40%"}, {n: "Văn (5.5)", v: "55%"}, {n: "Anh (3.5)", v: "35%"}] },
+    { name: "Dương Thị Mai", rank: 29, total: 12.25, role: "Thành viên", desc: "Nỗ lực chinh phục bài học, kiên trì không ngại gian nan.", tag: "🌿 Hoa Nở Hướng Dương", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=DuongMai", history: "Mai là cô bạn kiên định, dù gặp đề văn dài hay toán khó cũng luôn cố gắng hoàn thành trọn vẹn nhất bằng tinh thần tích cực.", skills: [{n: "Toán (4.25)", v: "42.5%"}, {n: "Văn (5.0)", v: "50%"}, {n: "Anh (3.0)", v: "30%"}] },
+    { name: "Đặng Nhật Minh", rank: 29, total: 12.25, role: "Thành viên", desc: "Cậu bạn ngoan ngoãn, hòa đồng, học tiếng Anh rất bén.", tag: "☘️ Chân Thành Ngoan Ngoãn", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=NhatMinh", history: "Nhật Minh có lối sống giản dị, hiền lành nên được bạn bè cực kỳ quý mến. Điểm Anh Văn 5.5 là điểm sáng cho sự nỗ lực của cậu.", skills: [{n: "Toán (3.75)", v: "37.5%"}, {n: "Văn (3.0)", v: "30%"}, {n: "Anh (5.5)", v: "55%"}] },
+    { name: "Trần Thị Mai Phương", rank: 29, total: 12.25, role: "Thành viên", desc: "Gương mặt vui tươi, năng nổ giúp đỡ việc chung của lớp.", tag: "☀️ Năng Lượng Đáng Yêu", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=MaiPhuongT", history: "Mai Phương luôn mang năng lượng tươi sáng đi học. Cô bạn học tốt hai môn Toán - Văn và luôn sẵn lòng lau bảng, dọn lớp sạch bong.", skills: [{n: "Toán (4.25)", v: "42.5%"}, {n: "Văn (4.5)", v: "45%"}, {n: "Anh (3.5)", v: "35%"}] },
+    { name: "Trần Thị Ngọc Linh", rank: 32, total: 12.0, role: "Thành viên", desc: "Tinh thần chăm chỉ, quyết tâm cải thiện điểm số tự nhiên.", tag: "📖 Siêng Năng Chăm Chỉ", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=NgocLinhT", history: "Ngọc Linh dành nhiều thời gian giải đề ôn tập toán hình, toán đại để nâng cao điểm số, tinh thần ham học hỏi vô cùng đáng biểu dương.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (3.5)", v: "35%"}, {n: "Anh (3.5)", v: "35%"}] },
+    { name: "Trần Anh Quân", rank: 32, total: 12.0, role: "Thành viên", desc: "Bứt phá vượt trội ở bộ môn Tiếng Anh với phản xạ cực nhanh.", tag: "⚡ Chiến Thần Anh Ngữ", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=AnhQuanT", history: "Anh Quân học ngoại ngữ với tư duy rất tự nhiên. Điểm số Tiếng Anh 5.75 cao ngất ngưởng chính là câu trả lời cho thực lực của cậu bạn.", skills: [{n: "Toán (5.25)", v: "52.5%"}, {n: "Văn (1.0)", v: "10%"}, {n: "Anh (5.75)", v: "57.5%"}] },
+    { name: "Trần Nhật Thiên", rank: 34, total: 11.5, role: "Thành viên", desc: "Chàng trai hào sảng, phóng khoáng và biết lắng nghe người khác.", tag: "🌟 Người Bạn Quốc Dân", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=NhatThien", history: "Nhật Thiên là người bạn dễ gần mến khách, luôn tạo không khí thoải mái giúp xua tan áp lực học hành căng thẳng cho các bạn xung quanh.", skills: [{n: "Toán (5.0)", v: "50%"}, {n: "Văn (4.5)", v: "45%"}, {n: "Anh (2.0)", v: "20%"}] },
+    { name: "Nguyễn Thị Thuỷ Linh", rank: 35, total: 10.5, role: "Thành viên", desc: "Ngoan ngoãn, siêng năng tuân thủ tốt mọi nề nếp trường lớp.", tag: "🌸 Chăm Ngoan Gương Mẫu", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=ThuyLinhN", history: "Thủy Linh đi học rất đúng giờ, chuẩn bị bài đầy đủ trước khi lên lớp, góp phần xây dựng phong trào thi đua nền nếp cho lớp.", skills: [{n: "Toán (4.5)", v: "45%"}, {n: "Văn (4.0)", v: "40%"}, {n: "Anh (2.0)", v: "20%"}] },
+    { name: "Lê Viết Thắng", rank: 35, total: 10.5, role: "Thành viên", desc: "Chàng trai ga lăng chín chắn, luôn gánh vác việc nặng giúp các bạn.", tag: "🕺 Ga Lăng Trượng Nghĩa", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=VietThang", history: "Nói ít làm nhiều, Viết Thắng luôn chủ động bê bàn ghế, đổ rác giúp các bạn nữ trong tổ, một điểm tựa vững vàng của tập thể.", skills: [{n: "Toán (4.0)", v: "40%"}, {n: "Văn (2.0)", v: "20%"}, {n: "Anh (4.5)", v: "45%"}] },
+    { name: "Vương Văn Hiếu", rank: 37, total: 10.0, role: "Thành viên", desc: "Luôn nỗ lực chăm chú lắng nghe, cải thiện sức học từng ngày.", tag: "🌿 Tiến Bước Mỗi Ngày", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=VanHieuV", history: "Văn Hiếu giữ vững thái độ cầu thị, siêng năng ôn bài trên lớp và đạt kết quả kiểm tra tiến bộ rõ rệt ở bộ môn Tiếng Anh thương yêu.", skills: [{n: "Toán (3.75)", v: "37.5%"}, {n: "Văn (2.0)", v: "20%"}, {n: "Anh (4.25)", v: "42.5%"}] },
+    { name: "Lê Hải Yến", rank: 38, total: 9.5, role: "Tổ phó nhiệt huyết", desc: "Cánh tay phải đắc lực của tổ, học tiếng Anh siêu đỉnh 6.5.", tag: "💪 Cán Sự Nhiệt Huyết", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HaiYen", history: "Hải Yến cực kỳ trách nhiệm khi thu nộp tập vở cho tổ. Cô bạn học Tiếng Anh siêu đỉnh với điểm số 6.5 vượt trội hoàn toàn.", skills: [{n: "Toán (3.0)", v: "30%"}, {n: "Văn (0.0)", v: "0%"}, {n: "Anh (6.5)", v: "65%"}] },
+    { name: "Lê Huyền Sang", rank: 39, total: 9.25, role: "Thành viên", desc: "Cần cù bù thông minh, giữ vững tinh thần gắn kết bè bạn.", tag: "🌸 Sợi Dây Gắn Kết", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HuyenSang", history: "Huyền Sang luôn giữ thái độ hòa nhã, yêu thương bạn bè và nỗ lực hết mình vượt qua các bài kiểm tra định kỳ khó nhằn đầy ý chí.", skills: [{n: "Toán (2.75)", v: "27.5%"}, {n: "Văn (3.5)", v: "35%"}, {n: "Anh (3.0)", v: "30%"}] },
+    { name: "Trần Bình Minh", rank: 40, total: 8.5, role: "Thành viên", desc: "Hòa nhã, vui tươi, nỗ lực từng bước chinh phục bài học mới.", tag: "🌿 Bình Minh Tươi Sáng", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=BinhMinhT", history: "Bình Minh là nhân tố kết nối tình bạn trong tổ, cậu bạn đạt mức điểm thi Toán tương đối tốt và đang nỗ lực chăm học hơn nữa.", skills: [{n: "Toán (4.5)", v: "45%"}, {n: "Văn (1.5)", v: "15%"}, {n: "Anh (2.5)", v: "25%"}] },
+    { name: "Phạm Hoàng Việt", rank: 41, total: 8.25, role: "Thành viên", desc: "Thành viên thầm lặng, luôn ủng hộ hết mình cho mọi hoạt động.", tag: "🤗 Cổ Động Viên Uy Tín", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HoangVietP", history: "Hoàng Việt ít nói nhưng hành động nhiều. Cậu luôn tham gia cổ vũ nhiệt tình cho đội bóng đá của lớp và học ngoại ngữ khá ổn.", skills: [{n: "Toán (2.75)", v: "27.5%"}, {n: "Văn (2.0)", v: "20%"}, {n: "Anh (3.5)", v: "35%"}] },
+    { name: "Trần Thị Hải Hiếu", rank: 42, total: 6.0, role: "Thành viên", desc: "Mảnh ghép kiên trì, sở hữu tinh thần vươn lên bền bỉ đáng quý.", tag: "✨ Ý Chí Kiên Định", img: "https://api.dicebear.com/7.x/adventurer/svg?seed=HaiHieu", history: "Dù kết quả đợt này chưa như ý muốn, Hải Hiếu vẫn khiến thầy cô và bạn bè tự hào nhờ ý chí kiên định, luôn chăm chỉ tích lũy kiến thức và không bao giờ bỏ cuộc.", skills: [{n: "Toán (2.0)", v: "20%"}, {n: "Văn (1.5)", v: "15%"}, {n: "Anh (2.5)", v: "25%"}] }
 ];
 
 window.onload = function() {
@@ -530,10 +393,10 @@ function renderClass() {
     const tSec = document.getElementById("teacher-section");
     tSec.innerHTML = `
         <div class="member teacher-card" onclick="openDetail('teacher')">
-            <div class="avatar-box teacher-avatar"><img src="${teacherData.img}" onerror="this.src='https://placehold.co/150x150/1e1b4b/ffffff?text=Co+Hieu'"></div>
-            <div class="mem-name" style="color: #facc15; font-size: 24px;">${teacherData.name}</div>
-            <div class="mem-role" style="color: #f97316;">${teacherData.role}</div>
-            <div class="mem-desc" style="color: #e2e8f0;">"${teacherData.desc}"</div>
+            <div class="avatar-box teacher-avatar"><img src="${teacherData.img}"></div>
+            <div class="mem-name" style="color: #b45309; font-size: 24px;">${teacherData.name}</div>
+            <div class="mem-role" style="color: #f97316; background: #fffbeb;">${teacherData.role}</div>
+            <div class="mem-desc" style="color: #475569;">"${teacherData.desc}"</div>
             <div class="tag teacher-tag">${teacherData.tag}</div>
         </div>
     `;
@@ -546,9 +409,9 @@ function renderClass() {
         memDiv.className = "member";
         memDiv.setAttribute("onclick", `openDetail(${index})`);
         memDiv.innerHTML = `
-            <div class="avatar-box"><img src="${member.img}" onerror="this.src='https://placehold.co/150x150/1e1b4b/ffffff?text=A4K14'"></div>
+            <div class="avatar-box"><img src="${member.img}"></div>
             <div class="mem-name">${member.name}</div>
-            <div class="mem-role">${member.role}</div>
+            <div class="mem-role">Hạng ${member.rank} • Tổng: ${member.total}</div>
             <div class="mem-desc">"${member.desc}"</div>
             <div class="tag">${member.tag}</div>
         `;
@@ -568,7 +431,7 @@ function openDetail(index) {
     data.skills.forEach(s => {
         skillHtml += `
             <div class="skill-bar-wrapper">
-                <div class="skill-info"><span>${s.n}</span><span>${s.v}</span></div>
+                <div class="skill-info"><span>${s.n}</span></div>
                 <div class="skill-track"><div class="skill-fill" data-width="${s.v}"></div></div>
             </div>`;
     });

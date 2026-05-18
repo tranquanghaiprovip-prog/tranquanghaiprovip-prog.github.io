@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A4K14 - Đại Gia Đình Kỷ Niệm</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: #090514;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* HIỆU ỨNG NỀN SAO BAY VŨ TRỤ */
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: fly linear infinite;
+    z-index: 1;
+}
+@keyframes fly {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-100vh); }
+}
+
+/* 1. MÀN HÌNH KHÓA TRẮC NGHIỆM */
+#intro {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at center, #1e1b4b 0%, #090514 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    z-index: 9999;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#intro.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+}
+
+.intro-card {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+#intro h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #38bdf8, #f472b6, #facc15);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+#intro p {
+    color: #94a3b8;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.choose-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.choose {
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.choose:hover {
+    background: linear-gradient(135deg, #06b6d4, #9333ea);
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+#msg {
+    margin-top: 20px;
+    color: #ef4444;
+    font-size: 14px;
+    min-height: 20px;
+    font-weight: 500;
+}
+
+/* 2. TRANG CHỦ LỚP KỶ NIỆM */
+#main-page {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease 0.3s;
+}
+
+#main-page.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+header {
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+header h2 {
+    font-size: 72px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    max-width: 600px;
+    margin-top: 15px;
+    font-size: 18px;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+.nickname {
+    margin-top: 25px;
+    padding: 8px 20px;
+    background: rgba(250, 204, 21, 0.1);
+    border: 1px solid #facc15;
+    border-radius: 50px;
+    font-size: 16px;
+    color: #facc15;
+    font-weight: 600;
+}
+
+/* KHU VỰC THÀNH VIÊN */
+section {
+    padding: 40px 5% 100px 5%;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    font-weight: 700;
+    position: relative;
+}
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #a855f7;
+    border-radius: 2px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* THẺ THÀNH VIÊN */
+.member {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.member::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(147, 51, 234, 0.08));
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.member:hover {
+    transform: translateY(-10px);
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.member:hover::before {
+    opacity: 1;
+}
+
+/* ĐẶC BIỆT: THẺ CỦA CÔ CHỦ NHIỆM VÀNG HOÀNG GIA */
+.teacher-card {
+    grid-column: 1 / -1; /* Đưa thẻ cô lên hàng đầu, kéo dài rộng ra giữa */
+    max-width: 400px;
+    margin: 0 auto 20px auto;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.05), rgba(9, 5, 20, 0.9));
+}
+.teacher-card:hover {
+    border-color: #facc15;
+    box-shadow: 0 15px 35px rgba(250, 204, 21, 0.2);
+}
+.teacher-avatar {
+    background: linear-gradient(135deg, #facc15, #f97316) !important;
+}
+.teacher-tag {
+    background: rgba(250, 204, 21, 0.15) !important;
+    border: 1px solid #facc15;
+    color: #facc15 !important;
+}
+
+/* KHUNG AVATAR */
+.avatar-box {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, #a855f7, #ec4899);
+    position: relative;
+    z-index: 2;
+}
+
+.avatar-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #1e1b4b;
+}
+
+.mem-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+}
+
+.mem-role {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #38bdf8;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.mem-desc {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.5;
+    position: relative;
+    z-index: 2;
+    min-height: 42px;
+}
+
+/* HUY HIỆU TÍNH CÁCH */
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 50px;
+    font-size: 12px;
+    margin-top: 15px;
+    color: #e2e8f0;
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SAO BAY NỀN -->
+<div id="star-container"></div>
+
+<!-- MÀN HÌNH KHÓA -->
+<div id="intro">
+    <div class="intro-card">
+        <h1>A4K14</h1>
+        <p>Chọn đúng tên Lớp trưởng kiêm Tổ trưởng để mở cánh cửa thanh xuân! 🔑</p>
+
+        <div class="choose-box">
+            <button class="choose" onclick="check('sai')">Boss Đại Ca giấu mặt</button>
+            <button class="choose" onclick="check('dung')">Khánh Thư</button>
+            <button class="choose" onclick="check('sai')">Hoàng Minh Đẹp Trai</button>
+        </div>
+
+        <div id="msg"></div>
+    </div>
+</div>
+
+<!-- TRANG CHỦ CHÍNH -->
+<div id="main-page">
+    <header>
+        <h2>A4K14</h2>
+        <p>
+            Một đại gia đình gồm 42 thành viên cùng người mẹ hiền thứ hai, nơi lưu giữ những tháng ngày rực rỡ và tình yêu thương vô bờ bến ✨
+        </p>
+        <div class="nickname" id="nick">Biệt danh lớp trưởng: ❓</div>
+    </header>
+
+    <section>
+        <h2 class="title">Đại Gia Đình A4K14</h2>
+        
+        <!-- Khung hiển thị riêng của Cô Giáo Chủ Nhiệm -->
+        <div id="teacher-section"></div>
+        
+        <!-- Grid hiển thị học sinh công bằng ở dưới -->
+        <div class="grid" id="list"></div>
+    </section>
+</div>
+
+<script>
+// Tạo hiệu ứng sao bay
+const starContainer = document.getElementById("star-container");
+for(let i = 0; i < 80; i++) {
+    let star = document.createElement("div");
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (4 + Math.random() * 6) + "s";
+    starContainer.appendChild(star);
+}
+
+// THÔNG TIN CÔ CHỦ NHIỆM (NGƯỜI MẸ THỨ 2)
+const teacherData = {
+    name: "Cô Hiếu",
+    role: "Giáo Viên Chủ Nhiệm",
+    desc: "Người mẹ thứ hai bao dung, luôn yêu thương, che chở và dìu dắt đại gia đình A4K14 trưởng thành từng ngày.",
+    tag: "❤️ Người Mẹ Thứ 2",
+    img: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=150"
+};
+
+// DANH SÁCH HỌC SINH (42 THÀNH VIÊN)
+const classData = [
+    { name: "Khánh Thư", role: "Lớp trưởng & Tổ trưởng", desc: "Người đứng đầu quyền lực, gánh vác cả lớp và tổ một cách xuất sắc.", tag: "👑 Quyền Lực", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" },
+    { name: "Khánh Huyền", role: "Lớp Phó", desc: "Cánh tay phải đắc lực của lớp trưởng, luôn chu đáo quán xuyến việc lớp.", tag: "✨ Chu Đáo", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150" },
+    { name: "Bảo Trâm", role: "Tổ trưởng", desc: "Tổ trưởng gương mẫu, dẫn dắt các thành viên trong tổ cực kỳ trách nhiệm.", tag: "🔥 Trách Nhiệm", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" },
+    { name: "Phương Mai", role: "Tổ trưởng", desc: "Luôn vui vẻ, hòa đồng nhưng khi làm việc thì cực kỳ nghiêm túc.", tag: "☀️ Năng Lượng", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150" },
+    { name: "Hà Giang", role: "Tổ trưởng", desc: "Mảnh ghép tổ trưởng tuyệt vời, luôn thầm lặng lo toan cho cả nhóm.", tag: "🌸 Tình Cảm", img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150" },
+    { name: "Hải Yến", role: "Tổ phó", desc: "Hỗ trợ quản lý tổ siêu đỉnh, luôn có mặt khi các thành viên cần giúp đỡ.", tag: "💪 Nhiệt Huyết", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150" },
+    { name: "An Ngọc", role: "Tổ phó", desc: "Tổ phó đáng yêu, tính tình nhẹ nhàng và rất được mọi người quý mến.", tag: "🍃 Nhẹ Nhàng", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=150" },
+    { name: "Kiều Chi", role: "Tổ phó", desc: "Luôn hoàn thành xuất sắc nhiệm vụ và mang lại tiếng cười cho tổ.", tag: "🎵 Khéo Léo", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=150" },
+    { name: "Trần Quang Hải", role: "Thành viên", desc: "Trùm công nghệ của lớp, lỗi phần mềm hay máy móc cứ để Hải lo.", tag: "💻 Dân Công Nghệ", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" },
+    { name: "Minh Quân", role: "Thành viên", desc: "Một mảnh ghép năng nổ, luôn hết mình trong mọi hoạt động chung.", tag: "⚡ Năng Động", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" },
+    { name: "Nhật Thiên", role: "Thành viên", desc: "Chàng trai hòa đồng, luôn mang năng lượng tích cực đến cho mọi người.", tag: "🌟 Thân Thiện", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150" },
+    { name: "Lê Thư", role: "Thành viên", desc: "Cô bạn dễ mến, chăm chỉ và luôn là một người đồng đội đáng tin cậy.", tag: "📚 Chăm Chỉ", img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150" },
+    { name: "Viết Thắng", role: "Thành viên", desc: "Tính cách điềm đạm, ga lăng và cực kỳ nhiệt tình với bạn bè.", tag: "🕺 Ga Lăng", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150" },
+    { name: "Đậu Thư", role: "Thành viên", desc: "Gương mặt vàng trong làng dễ thương, mang lại sự ấm áp cho lớp học.", tag: "🎀 Đáng Yêu", img: "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=150" },
+    { name: "Nhật Thành", role: "Thành viên", desc: "Chàng trai có những ý tưởng độc đáo, luôn khiến cả lớp bất ngờ.", tag: "💡 Sáng Tạo", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150" },
+    { name: "Trọng Phát", role: "Thành viên", desc: "Một thành viên tuyệt vời, luôn sát cánh cùng lớp trong mọi chặng đường.", tag: "🤝 Đồng Đội", img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=150" }
+];
+
+function check(type) {
+    let msg = document.getElementById("msg");
+
+    if (type === "dung") {
+        document.getElementById("intro").classList.add("hidden");
+        document.getElementById("main-page").classList.add("visible");
+        document.getElementById("nick").innerText = "👑 Lớp trưởng: Khánh Thư (Bé bự quyền lực)";
+        
+        renderClass();
+    } else {
+        msg.innerText = "❌ Không phải rồi! Chỉ thần dân A4K14 mới biết bí mật này thôi!";
+    }
+}
+
+function renderClass() {
+    // 1. Tạo thẻ cho Cô Giáo ở khu vực riêng biệt phía trên
+    const teacherSection = document.getElementById("teacher-section");
+    teacherSection.innerHTML = `
+        <div class="member teacher-card">
+            <div class="avatar-box teacher-avatar">
+                <img src="${teacherData.img}" alt="${teacherData.name}" onerror="this.src='https://placehold.co/150x150/1e1b4b/ffffff?text=Co+Hieu'">
+            </div>
+            <div class="mem-name" style="color: #facc15; font-size: 24px;">${teacherData.name}</div>
+            <div class="mem-role" style="color: #f97316;">${teacherData.role}</div>
+            <div class="mem-desc" style="color: #e2e8f0;">"${teacherData.desc}"</div>
+            <div class="tag teacher-tag">${teacherData.tag}</div>
+        </div>
+    `;
+
+    // 2. Tạo danh sách 42 học sinh ở bên dưới
+    const list = document.getElementById("list");
+    list.innerHTML = "";
+
+    for (let i = 1; i <= 42; i++) {
+        const memDiv = document.createElement("div");
+        memDiv.className = "member";
+
+        let currentMem = classData[i - 1];
+        
+        if (!currentMem) {
+            currentMem = {
+                name: "Thành viên A4..." + i,
+                role: "Mảnh ghép số " + i,
+                desc: "Đang chờ cập nhật tính cách độc lạ của thành viên này vào lưu bút...",
+                tag: "✨ A4K14",
+                img: `https://placehold.co/150x150/1e1b4b/ffffff?text=A4+${i}`
+            };
+        }
+
+        memDiv.innerHTML = `
+            <div class="avatar-box">
+                <img src="${currentMem.img}" alt="${currentMem.name}" onerror="this.src='https://placehold.co/150x150/1e1b4b/ffffff?text=A4K14'">
+            </div>
+            <div class="mem-name">${currentMem.name}</div>
+            <div class="mem-role">${currentMem.role}</div>
+            <div class="mem-desc">"${currentMem.desc}"</div>
+            <div class="tag">${currentMem.tag}</div>
+        `;
+        
+        list.appendChild(memDiv);
+    }
+}
+</script>
+
+</body>
+</html>

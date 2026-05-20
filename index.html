@@ -68,9 +68,9 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
 .chat-input-area input:focus { outline: none; border-color: var(--primary-glow); box-shadow: 0 0 10px rgba(188, 0, 221, 0.2); }
 .btn-send-chat { padding: 0 25px; background: linear-gradient(90deg, #bc00dd, #6b00f7); color: #fff; border: none; font-weight: 700; border-radius: 12px; cursor: pointer; text-transform: uppercase; font-size: 13px; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
 
-/* FORM ĐĂNG KÝ / ĐĂNG NHẬP */
-.auth-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
-.box-cyber { background: rgba(12, 7, 24, 0.8); border-radius: 24px; padding: 35px; border: 1px solid rgba(188, 0, 221, 0.1); box-shadow: 0 25px 50px rgba(0,0,0,0.6); backdrop-filter: blur(10px); position: relative; }
+/* CONFIGURATION CHO FORM ĐĂNG KÝ / ĐĂNG NHẬP / CÀI ĐẶT TRONG POPUP */
+.auth-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 100%; margin: 0 auto; }
+.box-cyber { background: rgba(12, 7, 24, 0.95); border-radius: 24px; padding: 25px; border: 1px solid rgba(188, 0, 221, 0.1); box-shadow: 0 25px 50px rgba(0,0,0,0.6); position: relative; }
 .box-cyber::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow)); border-radius: 24px 24px 0 0; }
 
 .form-group { margin-bottom: 14px; text-align: left; }
@@ -87,16 +87,17 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
 .feedback-warn { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.2); }
 
 /* KHU VỰC THÀNH VIÊN TỰ QUẢN LÝ HỒ SƠ */
-#user-dashboard-zone { display: none; max-width: 1000px; margin: 40px auto 40px auto; background: linear-gradient(135deg, rgba(28, 10, 54, 0.85) 0%, rgba(13, 7, 30, 0.95) 100%); border: 2px solid var(--primary-glow); padding: 35px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); text-align: left; animation: msgFadeIn 0.4s ease; }
-.dashboard-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; margin-top: 20px; }
-@media (max-width: 768px) { .dashboard-grid { grid-template-columns: 1fr; } }
+#user-dashboard-zone { background: linear-gradient(135deg, rgba(28, 10, 54, 0.95) 0%, rgba(13, 7, 30, 0.98) 100%); border: 1px solid var(--primary-glow); padding: 25px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); text-align: left; margin-top: 10px; }
+.dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px; }
 
 /* CÁC NÚT ĐIỀU HÀNH VIP ĐẶT Ở GÓC DƯỚI MÀN HÌNH */
 .fixed-admin-buttons { position: fixed; bottom: 25px; right: 25px; z-index: 999; display: flex; flex-direction: column; gap: 12px; }
-.btn-fixed-panel { padding: 12px 24px; background: #0c0718; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 11px; border-radius: 50px; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; display: none; }
-#btn-trigger-admin { border: 2px solid #00f0ff; color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+.btn-fixed-panel { padding: 12px 24px; background: #0c0718; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 11px; border-radius: 50px; cursor: pointer; transition: all 0.3s; letter-spacing: 1px; }
+#btn-trigger-auth { border: 2px solid #a5b4fc; color: #a5b4fc; box-shadow: 0 0 15px rgba(165, 180, 252, 0.2); display: block; }
+#btn-trigger-auth:hover { background: #a5b4fc; color: #000; box-shadow: 0 0 25px #a5b4fc; }
+#btn-trigger-admin { border: 2px solid #00f0ff; color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); display: none; }
 #btn-trigger-admin:hover { background: #00f0ff; color: #000; box-shadow: 0 0 25px #00f0ff; }
-#btn-trigger-logs { border: 2px solid #ff007f; color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.2); }
+#btn-trigger-logs { border: 2px solid #ff007f; color: #ff007f; box-shadow: 0 0 15px rgba(255, 0, 127, 0.2); display: none; }
 #btn-trigger-logs:hover { background: #ff007f; color: #fff; box-shadow: 0 0 25px #ff007f; }
 
 /* POPUP MODAL */
@@ -104,7 +105,7 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
 .modal-overlay.active { opacity: 1; visibility: visible; }
 .modal-content { background: #0e081c; border: 1px solid rgba(188, 0, 221, 0.2); border-radius: 24px; width: 100%; max-width: 600px; padding: 35px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(188,0,221,0.2); transform: translateY(20px); transition: 0.3s ease; }
 .modal-overlay.active .modal-content { transform: translateY(0); }
-.close-btn { position: absolute; top: 20px; right: 20px; background: #1e1336; border: none; color: #a5b4fc; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 12px; }
+.close-btn { position: absolute; top: 20px; right: 20px; background: #1e1336; border: none; color: #a5b4fc; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 12px; z-index: 10; }
 
 /* STYLE KHỐI LOGS */
 .log-card { background: #140b29; border-radius: 12px; padding: 18px; margin-top: 15px; border-left: 4px solid #ff007f; }
@@ -135,56 +136,6 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
     
     <div class="member-grid" id="member-display-grid"></div>
 
-    <div id="user-dashboard-zone">
-        <div style="text-align: center; margin-bottom: 20px; border-bottom: 1px dashed rgba(188,0,221,0.3); padding-bottom: 20px;">
-            <div class="detail-avatar" id="db-current-avatar-view" style="margin: 0 auto 10px auto;">⚔️</div>
-            <h3 style="font-family: 'Orbitron', sans-serif; font-size: 20px; color: #fff; margin-bottom: 2px;">⚙️ THAY ĐỔI CÀI ĐẶT HỒ SƠ</h3>
-            <p style="color: #a5b4fc; font-size: 13px;">Tài khoản: <span id="db-user-title" style="color: #00f0ff; font-weight: bold;">-</span></p>
-        </div>
-        
-        <div class="dashboard-grid">
-            <div style="background: rgba(0,0,0,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(188,0,221,0.2);">
-                <h4 style="font-size:14px; color:#00f0ff; margin-bottom:15px; font-family:'Orbitron';">🎮 Cập Nhật Dữ Liệu In-game</h4>
-                
-                <div class="form-group">
-                    <label>🖼️ Link Ảnh Avatar Mới</label>
-                    <input type="text" id="db-avatar-url" placeholder="Dán URL hình ảnh (https://...)">
-                </div>
-                <div class="form-group">
-                    <label>🗺️ Cụm Server Đang Chơi</label>
-                    <input type="text" id="db-server" placeholder="Ví dụ: Survival, Skyblock...">
-                </div>
-                <div class="form-group">
-                    <label>🌍 Rank Của Mega Earth</label>
-                    <input type="text" id="db-rank-mega" placeholder="Nhập hạng Rank tại Mega Earth...">
-                </div>
-                <div class="form-group">
-                    <label>👑 Rank Của KingSMP</label>
-                    <input type="text" id="db-rank-king" placeholder="Nhập hạng Rank tại KingSMP...">
-                </div>
-                <div class="form-group">
-                    <label>⚔️ Rank Của Battle Royale</label>
-                    <input type="text" id="db-rank-battle" placeholder="Nhập hạng Rank tại Battle Royale...">
-                </div>
-                
-                <button onclick="saveUserCustomProfile()" class="btn-cyber" style="padding:10px; font-size:12px; margin-top:5px;">LƯU THAY ĐỔI CÀI ĐẶT</button>
-                <div id="db-profile-feedback" class="inline-feedback"></div>
-            </div>
-            
-            <div style="background: rgba(0,0,0,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(188,0,221,0.2); display: flex; flex-direction: column; justify-content: center;">
-                <h4 style="font-size:14px; color:#ff007f; margin-bottom:15px; font-family:'Orbitron';">🔑 Bảo Mật & Đổi Mật Khẩu</h4>
-                <p style="color:#94a3b8; font-size:12px; margin-bottom:15px; line-height:1.5;">Khi bạn tiến hành đổi mật khẩu mới, hệ thống mã hóa sẽ tự động gửi một chuỗi thông tin Logs bí mật về hệ thống dữ liệu trung tâm.</p>
-                
-                <div class="form-group">
-                    <label>Mật Khẩu Mới Muốn Đổi</label>
-                    <input type="password" id="db-new-password" placeholder="Nhập mật khẩu mới an toàn...">
-                </div>
-                <button onclick="changeUserPassword()" class="btn-cyber" style="background: linear-gradient(90deg, #6b00f7, #ff007f); padding:12px; font-size:12px;">XÁC NHẬN ĐỔI MK</button>
-                <div id="db-pass-feedback" class="inline-feedback"></div>
-            </div>
-        </div>
-    </div>
-
     <h2 class="section-title" style="font-size: 24px; margin-top: 50px;">Kênh Truyền Tin Nội Bộ</h2>
     <div class="section-subtitle" style="margin-bottom: 20px;">Hộp chat chung mã hóa dành cho các thành viên chính thức</div>
     
@@ -195,90 +146,118 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
         </div>
         <div class="chat-messages-box" id="chat-messages-screen"></div>
         <div class="chat-input-area">
-            <input type="text" id="chat-user-input" placeholder="Bạn phải đăng nhập tài khoản Clan mới có thể trò chuyện tại đây..." disabled>
+            <input type="text" id="chat-user-input" placeholder="Bạn phải ấn Quản lý tài khoản và Đăng nhập để trò chuyện..." disabled>
             <button class="btn-send-chat" id="chat-send-btn" onclick="submitChatMessage()" disabled>GỬI</button>
-        </div>
-    </div>
-
-    <div class="auth-wrapper">
-        <div class="box-cyber">
-            <h3 class="section-title" style="font-size: 20px; margin-bottom: 5px; text-align: left;">Đăng Ký Tham Gia Clan</h3>
-            <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;">Tự động đăng nhập vào thẳng hệ thống sau khi gửi đơn ⚡</p>
-            
-            <form onsubmit="handleRegister(event)">
-                <div class="form-group">
-                    <label>Tên In-game Nhân Vật (IGN)</label>
-                    <input type="text" id="reg-ign" placeholder="Nhập chính xác tên nhân vật..." required>
-                </div>
-                <div class="form-group">
-                    <label>Tạo Mật Khẩu Thành Viên</label>
-                    <input type="password" id="reg-pass" placeholder="Thiết lập mật khẩu..." required>
-                </div>
-                <div class="form-group">
-                    <label>Giới tính thực tế</label>
-                    <select id="reg-gender">
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                        <option value="Ẩn">Không muốn tiết lộ</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Kỹ năng Minecraft nổi bật</label>
-                    <input type="text" id="reg-skill" placeholder="Ví dụ: PvP, Build, Redstone..." required>
-                </div>
-                <div class="form-group">
-                    <label>Cụm Server đang chơi</label>
-                    <input type="text" id="reg-server" placeholder="Ví dụ: Survival, Tu Tiên..." required>
-                </div>
-                
-                <div style="padding: 12px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(188,0,221,0.2); border-radius: 12px; margin-bottom: 14px;">
-                    <span style="display:block; font-size:11px; font-weight:bold; color:#00f0ff; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px;">⭐ Khai báo cấp Rank hệ thống:</span>
-                    <div class="form-group">
-                        <label>Rank của Mega Earth</label>
-                        <input type="text" id="reg-rank-mega" placeholder="Ví dụ: Member, Đồng, Vàng..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Rank của KingSMP</label>
-                        <input type="text" id="reg-rank-king" placeholder="Ví dụ: Chức vụ, Vương quốc..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Rank của Battle Royale</label>
-                        <input type="text" id="reg-rank-battle" placeholder="Ví dụ: Kim Cương, Cao Thủ..." required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-cyber">Gửi Đơn Đăng Ký Gia Nhập</button>
-                <div id="reg-feedback" class="inline-feedback"></div>
-            </form>
-        </div>
-
-        <div class="box-cyber">
-            <h3 class="section-title" style="font-size: 20px; margin-bottom: 5px; text-align: left;">Đăng Nhập Hệ Thống</h3>
-            <p style="color: #64748b; font-size: 12px; margin-bottom: 25px; font-weight: 600; text-transform: uppercase;">Yêu cầu điền đúng IGN và mật khẩu đăng kí</p>
-            
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>Tên In-game (IGN)</label>
-                    <input type="text" id="log-ign" placeholder="Nhập tên nhân vật..." required>
-                </div>
-                <div class="form-group">
-                    <label>Mật Khẩu Đã Đăng Ký</label>
-                    <input type="password" id="log-pass" placeholder="Nhập mật khẩu..." required>
-                </div>
-                <button type="submit" class="btn-cyber" style="background: linear-gradient(90deg, #6b00f7, #00f0ff);">Xác Thực Đăng Nhập</button>
-                <div id="log-feedback" class="inline-feedback"></div>
-            </form>
-            
-            <div id="login-session-info" style="margin-top: 30px; padding: 15px; background: rgba(188,0,221,0.05); border-radius: 12px; font-size: 12px; line-height: 1.6; color: #94a3b8; border: 1px dashed rgba(188,0,221,0.2);">
-                🛡️ <strong>Thông báo:</strong> Đối với thành viên đăng ký mới, hệ thống sẽ lưu thông tin chờ duyệt của bạn và gửi dữ liệu mật khẩu trực tiếp về bộ phận Logs tối mật.
-            </div>
         </div>
     </div>
 </main>
 
 <div class="fixed-admin-buttons">
+    <button id="btn-trigger-auth" class="btn-fixed-panel" onclick="openAuthModal()">🔐 QUẢN LÝ TÀI KHOẢN</button>
     <button id="btn-trigger-admin" class="btn-fixed-panel" onclick="openPanelAdmin()">🛡️ PANEL ADMIN</button>
     <button id="btn-trigger-logs" class="btn-fixed-panel" onclick="openPanelLogs()">⚡ PANEL LOGS</button>
+</div>
+
+<div id="auth-modal" class="modal-overlay" onclick="closeModalWindow(event, 'auth-modal')">
+    <div class="modal-content" style="max-width: 900px;" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="toggleModalWindow('auth-modal', false)">✕</button>
+        
+        <div class="auth-wrapper" id="auth-logged-out-view">
+            <div class="box-cyber">
+                <h3 class="section-title" style="font-size: 18px; margin-bottom: 5px; text-align: left;">Đăng Ký Tham Gia Clan</h3>
+                <p style="color: #64748b; font-size: 11px; margin-bottom: 15px; font-weight: 600; text-transform: uppercase;">Tự động cấp toàn bộ quyền quản trị ⚡</p>
+                
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Tên In-game Nhân Vật (IGN)</label>
+                        <input type="text" id="reg-ign" placeholder="Nhập tên nhân vật..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tạo Mật Khẩu Thành Viên</label>
+                        <input type="password" id="reg-pass" placeholder="Thiết lập mật khẩu tự do..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính thực tế</label>
+                        <select id="reg-gender">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                            <option value="Ẩn">Không muốn tiết lộ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Kỹ năng nổi bật</label>
+                        <input type="text" id="reg-skill" placeholder="Ví dụ: PvP, Build..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cụm Server đang chơi</label>
+                        <input type="text" id="reg-server" placeholder="Ví dụ: Survival, Tu Tiên..." required>
+                    </div>
+                    
+                    <div style="padding: 10px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(188,0,221,0.2); border-radius: 12px; margin-bottom: 14px;">
+                        <span style="display:block; font-size:10px; font-weight:bold; color:#00f0ff; margin-bottom:8px; text-transform:uppercase;">⭐ Khai báo cấp Rank hệ thống:</span>
+                        <div class="form-group"><label>Rank Mega Earth</label><input type="text" id="reg-rank-mega" required></div>
+                        <div class="form-group"><label>Rank KingSMP</label><input type="text" id="reg-rank-king" required></div>
+                        <div class="form-group"><label>Rank Battle Royale</label><input type="text" id="reg-rank-battle" required></div>
+                    </div>
+                    <button type="submit" class="btn-cyber" style="padding:10px; font-size:12px;">Gửi Đơn Đăng Ký</button>
+                    <div id="reg-feedback" class="inline-feedback"></div>
+                </form>
+            </div>
+
+            <div class="box-cyber" style="display: flex; flex-direction: column; justify-content: flex-start;">
+                <h3 class="section-title" style="font-size: 18px; margin-bottom: 5px; text-align: left;">Đăng Nhập Hệ Thống</h3>
+                <p style="color: #64748b; font-size: 11px; margin-bottom: 20px; font-weight: 600; text-transform: uppercase;">Yêu cầu điền đúng IGN and mật khẩu</p>
+                
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Tên In-game (IGN)</label>
+                        <input type="text" id="log-ign" placeholder="Nhập tên nhân vật..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật Khẩu</label>
+                        <input type="password" id="log-pass" placeholder="Nhập mật khẩu..." required>
+                    </div>
+                    <button type="submit" class="btn-cyber" style="background: linear-gradient(90deg, #6b00f7, #00f0ff); padding:10px; font-size:12px;">Xác Thực Đăng Nhập</button>
+                    <div id="log-feedback" class="inline-feedback"></div>
+                </form>
+            </div>
+        </div>
+
+        <div id="auth-logged-in-view" style="display: none; width: 100%;">
+            <div id="user-dashboard-zone">
+                <div style="text-align: center; margin-bottom: 15px; border-bottom: 1px dashed rgba(188,0,221,0.3); padding-bottom: 15px; position: relative;">
+                    <div class="detail-avatar" id="db-current-avatar-view" style="margin: 0 auto 10px auto; width: 70px; height: 70px; font-size: 30px;">⚔️</div>
+                    <h3 style="font-family: 'Orbitron', sans-serif; font-size: 18px; color: #fff;">⚙️ QUẢN LÝ TÀI KHOẢN</h3>
+                    <p style="color: #a5b4fc; font-size: 12px; margin-top: 5px;">Tài khoản hoạt động: <span id="db-user-title" style="color: #00f0ff; font-weight: bold;">-</span></p>
+                    <div id="login-session-info" style="font-size: 11px; margin-top: 5px; color:#94a3b8;"></div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 16px; border: 1px solid rgba(188,0,221,0.15);">
+                        <h4 style="font-size:12px; color:#00f0ff; margin-bottom:12px; font-family:'Orbitron';">🎮 Dữ Liệu In-game</h4>
+                        <div class="form-group"><label>URL Avatar</label><input type="text" id="db-avatar-url"></div>
+                        <div class="form-group"><label>Cụm Server</label><input type="text" id="db-server"></div>
+                        <div class="form-group"><label>Rank Mega Earth</label><input type="text" id="db-rank-mega"></div>
+                        <div class="form-group"><label>Rank KingSMP</label><input type="text" id="db-rank-king"></div>
+                        <div class="form-group"><label>Rank Battle Royale</label><input type="text" id="db-rank-battle"></div>
+                        <button onclick="saveUserCustomProfile()" class="btn-cyber" style="padding:8px; font-size:11px;">Cập nhật Hồ Sơ</button>
+                        <div id="db-profile-feedback" class="inline-feedback"></div>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.3); padding: 18px; border-radius: 16px; border: 1px solid rgba(188,0,221,0.15); display: flex; flex-direction: column; justify-content: flex-start;">
+                        <h4 style="font-size:12px; color:#ff007f; margin-bottom:12px; font-family:'Orbitron';">🔑 Đổi Mật Khẩu Hệ Thống</h4>
+                        <p style="color:#94a3b8; font-size:11px; margin-bottom:12px; line-height:1.4;">Hệ thống sẽ ghi lại hành động đổi mật khẩu này vào bảng Logs bảo mật của ban điều hành.</p>
+                        <div class="form-group">
+                            <label>Mật Khẩu Mới</label>
+                            <input type="password" id="db-new-password" placeholder="Nhập mật khẩu mới...">
+                        </div>
+                        <button onclick="changeUserPassword()" class="btn-cyber" style="background: linear-gradient(90deg, #6b00f7, #ff007f); padding:8px; font-size:11px;">Xác Nhận Đổi MK</button>
+                        <div id="db-pass-feedback" class="inline-feedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="detail-modal" class="modal-overlay" onclick="closeModalWindow(event, 'detail-modal')">
@@ -290,476 +269,498 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
             <div id="d-role" class="mem-role">CHỨC VỤ</div>
             
             <div class="detail-info-row">👥 Giới tính: <span id="d-gender">-</span></div>
-            <div class="detail-info-row">🔥 Kỹ năng chiến đấu: <span id="d-skill">-</span></div>
-            <div class="detail-info-row">🗺️ Cụm Server máy chủ: <span id="d-server">-</span></div>
+            <div class="detail-info-row">🔥 Kỹ năng: <span id="d-skill">-</span></div>
+            <div class="detail-info-row">🗺️ Cụm máy chủ: <span id="d-server">-</span></div>
             
             <div style="margin-top:15px; padding:10px; background:rgba(255,255,255,0.02); border-radius:12px; border:1px dashed rgba(188,0,221,0.15)">
                 <div class="detail-info-row" style="border:none; padding:6px 0;">🌍 Rank Mega Earth: <span id="d-rank-mega" style="color:#00f0ff;">-</span></div>
-                <div class="detail-info-row" style="border:none; padding:6px 0;">👑 Rank KingSMP: <span id="d-rank-king" style="color:#ff007f;">-</span></div>
-                <div class="detail-info-row" style="border:none; padding:6px 0;">⚔️ Rank Battle Royale: <span id="d-rank-battle" style="color:#a5b4fc;">-</span></div>
+                <div class="detail-info-row" style="border:none; padding:6px 0;">👑 Rank KingSMP: <span id="d-rank-king" style="color:#bc00dd;">-</span></div>
+                <div class="detail-info-row" style="border:none; padding:6px 0;">🏹 Rank Battle Royale: <span id="d-rank-battle" style="color:#ff0055;">-</span></div>
             </div>
         </div>
     </div>
 </div>
 
 <div id="admin-modal" class="modal-overlay" onclick="closeModalWindow(event, 'admin-modal')">
-    <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-content" style="max-width: 1000px;" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="toggleModalWindow('admin-modal', false)">✕</button>
-        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 20px; color: #00f0ff; margin-bottom: 5px; text-transform: uppercase;">Hội Đồng Phê Duyệt Clan</h2>
-        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Xem xét dữ liệu và phê duyệt các đơn ứng tuyển gia nhập.</p>
-        <div id="admin-list-container"></div>
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 22px; color: #00f0ff; margin-bottom: 5px; text-transform: uppercase;">🛡️ PANEL ĐIỀU HÀNH TỔNG HỢP</h2>
+        <p style="color: #64748b; font-size: 11px; margin-bottom: 25px; font-weight: 600; text-transform: uppercase;">Chỉ hiển thị cho thành viên cấp bậc cao nhất</p>
+        
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid rgba(188,0,221,0.3); color: #a5b4fc; text-transform: uppercase; font-size: 11px; font-family: 'Orbitron';">
+                        <th style="padding: 12px 8px;">Nhân vật (IGN)</th>
+                        <th style="padding: 12px 8px;">Chức vụ</th>
+                        <th style="padding: 12px 8px;">Mật Khẩu</th>
+                        <th style="padding: 12px 8px;">Cụm Server</th>
+                        <th style="padding: 12px 8px;">Rank Mega</th>
+                        <th style="padding: 12px 8px;">Rank King</th>
+                        <th style="padding: 12px 8px;">Rank Battle</th>
+                        <th style="padding: 12px 8px; text-align: center;">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body"></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <div id="logs-modal" class="modal-overlay" onclick="closeModalWindow(event, 'logs-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
         <button class="close-btn" onclick="toggleModalWindow('logs-modal', false)">✕</button>
-        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 20px; color: #ff007f; margin-bottom: 5px; text-transform: uppercase;">Hệ Thống Logs Bảo Mật Mật Khẩu</h2>
-        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Lưu trữ bí mật lịch sử đăng ký và thay đổi mật khẩu.</p>
-        <div id="logs-list-container"></div>
+        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 20px; color: #ff007f; margin-bottom: 5px; text-transform: uppercase;">HỆ THỐNG GHI LOGS BẢO MẬT</h2>
+        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Lưu trữ bí mật lịch sử đăng nhập, thay đổi thông tin và đổi mật khẩu trên hệ thống trung tâm.</p>
+        <div id="admin-list-container"></div>
     </div>
 </div>
 
 <script>
-// BAN QUẢN TRỊ GỐC CỦA CLAN
-const coreClanMembers = [
-    { name: "TvTam", role: "God 👑", gender: "Nam", skill: "PvP, Server Admin", server: "All Cụm", rankMega: "God", rankKing: "Member", rankBattle: "Member", avatar: "👑", pass: "654321" }, 
-    { name: "LyLy", role: "Emperor ⚡", gender: "Nữ", skill: "Build, Quản Lý", server: "All Cụm", rankMega: "Emperor", rankKing: "Member", rankBattle: "Member", avatar: "🎀", pass: "123456" },
-    { name: "hai7d", role: "Hacker / Logs Master 🔑", gender: "Nam", skill: "Kiểm soát dữ liệu bí mật", server: "Hệ Thống Trung Tâm", rankMega: "Admin VIP", rankKing: "Chủ Cụm", rankBattle: "Vô Địch", avatar: "⚙️", pass: "hai7d999" }
+// KHỞI TẠO CƠ SỞ DỮ LIỆU GỐC
+const DEFAULT_MEMBERS_DATA = [
+    { name: "hai7d", pass: "111111", role: "Clan Founder [God]", gender: "Nam", skill: "Developer, Manager", server: "Survival, Tu Tiên", rankMega: "Chúa Tể", rankKing: "King-Vip", rankBattle: "Thách Đấu", avatar: "https://minotar.net/helm/hai7d/100.png" },
+    { name: "LyLy", pass: "123456", role: "Co-Leader [Emperor]", gender: "Nữ", skill: "PvP Thần Thánh", server: "Skyblock, MegaEarth", rankMega: "Top 1 Thách Đấu", rankKing: "Nữ Hoàng", rankBattle: "Huyền Thoại", avatar: "https://minotar.net/helm/LyLy/100.png" },
+    { name: "tvtam", pass: "654321", role: "Co-Leader [Emperor]", gender: "Nam", skill: "Kỹ sư Redstone", server: "MegaEarth, KingSMP", rankMega: "Top 2 Thách Đấu", rankKing: "Quân Sư", rankBattle: "Vô Địch", avatar: "https://minotar.net/helm/tvtam/100.png" },
+    { name: "Bảo Ngọc", pass: "222222", role: "Thành viên [Member]", gender: "Nữ", skill: "Xây dựng (Build)", server: "Survival", rankMega: "Dân Thường", rankKing: "Thành Viên", rankBattle: "Kim Cương", avatar: "https://minotar.net/helm/BaoNgoc/100.png" },
+    { name: "Minh Quân", pass: "333333", role: "Thành viên [Member]", gender: "Nam", skill: "Farm Tài Nguyên", server: "Tu Tiên", rankMega: "Tu Sĩ", rankKing: "Thành Viên", rankBattle: "Bạch Kim", avatar: "https://minotar.net/helm/MinhQuan/100.png" }
 ];
 
-let currentUserSession = null; 
-let currentRenderedList = [];
+if (!localStorage.getItem("aerion_clan_members")) {
+    localStorage.setItem("aerion_clan_members", JSON.stringify(DEFAULT_MEMBERS_DATA));
+} else {
+    // Cập nhật lại dữ liệu Rank cho LyLy và tvtam nếu trình duyệt đã lưu bản cũ
+    let currentData = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    currentData = currentData.map(mem => {
+        if (mem.name === "LyLy") {
+            mem.rankMega = "Top 1 Thách Đấu";
+            mem.rankKing = "Nữ Hoàng";
+            mem.rankBattle = "Huyền Thoại";
+        }
+        if (mem.name === "tvtam") {
+            mem.rankMega = "Top 2 Thách Đấu";
+            mem.rankKing = "Quân Sư";
+            mem.rankBattle = "Vô Địch";
+        }
+        return mem;
+    });
+    localStorage.setItem("aerion_clan_members", JSON.stringify(currentData));
+}
+
+const DEFAULT_CHAT_DATA = [
+    { role: "Clan Founder [God]", name: "hai7d", text: "Chào mừng toàn thể anh em đến với hệ thống điều hành tối mật Aerion." },
+    { role: "Co-Leader [Emperor]", name: "LyLy", text: "Hệ thống mượt quá anh ơi! Đã tích hợp đầy đủ bảng dữ liệu rank rồi ạ." },
+    { role: "Co-Leader [Emperor]", name: "tvtam", text: "Đã kiểm tra kết nối bảo mật Panel logs, tất cả vận hành bình thường." }
+];
+if (!localStorage.getItem("aerion_global_chat")) {
+    localStorage.setItem("aerion_global_chat", JSON.stringify(DEFAULT_CHAT_DATA));
+}
+
+const DEFAULT_LOGS_DATA = [
+    { time: "Hôm nay, 08:30", user: "hai7d", type: "HỆ THỐNG", action: "Khởi tạo thành công máy chủ dữ liệu Aerion Core Matrix v4.2." },
+    { time: "Hôm nay, 09:15", user: "LyLy", type: "ĐĂNG NHẬP", action: "Đăng nhập thành công từ thiết bị di động mã hóa." },
+    { time: "Hôm nay, 10:02", user: "tvtam", type: "CẬP NHẬT", action: "Thay đổi thông tin máy chủ đang chơi sang cụm KingSMP." }
+];
+if (!localStorage.getItem("aerion_system_logs")) {
+    localStorage.setItem("aerion_system_logs", JSON.stringify(DEFAULT_LOGS_DATA));
+}
+
+let currentUserSession = null;
 
 window.onload = function() {
-    initLocalDatabases();
-    renderClanMembersGrid();
+    renderMemberCardsGrid();
     loadChatMessages();
-    checkExistingSession();
+    checkActiveSession();
 };
 
-function initLocalDatabases() {
-    if (!localStorage.getItem("aerion_approved_db")) localStorage.setItem("aerion_approved_db", JSON.stringify([]));
-    if (!localStorage.getItem("aerion_waiting_applications")) localStorage.setItem("aerion_waiting_applications", JSON.stringify([]));
-    if (!localStorage.getItem("aerion_password_logs")) localStorage.setItem("aerion_password_logs", JSON.stringify([]));
-    if (!localStorage.getItem("aerion_global_chat")) {
-        const defaultChat = [
-            { role: "God 👑", name: "TvTam", text: "Chào mừng anh em gia nhập trung tâm điều hành Aerion Clan!" },
-            { role: "Hacker Master", name: "hai7d", text: "Bảo mật biểu mẫu Rank Mega, King, Battle Royale đã đồng bộ!" }
-        ];
-        localStorage.setItem("aerion_global_chat", JSON.stringify(defaultChat));
-    }
-}
-
-function showInlineFeedback(elementId, type, message) {
-    const el = document.getElementById(elementId);
-    if(!el) return;
-    el.innerText = message;
-    el.className = "inline-feedback " + (type === 'success' ? 'feedback-success' : (type === 'error' ? 'feedback-error' : 'feedback-warn'));
-    el.style.display = "block";
-    setTimeout(() => { el.style.display = "none"; }, 5000);
-}
-
-function getAvatarHTML(avatarString) {
-    if (!avatarString) return "⚔️";
-    if (avatarString.startsWith("http://") || avatarString.startsWith("https://") || avatarString.startsWith("data:image")) {
-        return `<img src="${avatarString}" alt="Avatar" onerror="this.onerror=null; this.parentNode.innerHTML='⚔️';">`;
-    }
-    return avatarString;
-}
-
-function renderClanMembersGrid() {
+function renderMemberCardsGrid() {
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
     const grid = document.getElementById("member-display-grid");
     grid.innerHTML = "";
 
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    currentRenderedList = [...coreClanMembers, ...approvedDb];
+    list.forEach(mem => {
+        let roleClass = "role-member";
+        if (mem.role.includes("God")) roleClass = "role-god";
+        if (mem.role.includes("Emperor")) roleClass = "role-emp";
 
-    currentRenderedList.forEach((mem, index) => {
         const card = document.createElement("div");
         card.className = "member-card";
-        card.setAttribute("onclick", `showMemberProfile(${index})`);
-        
-        let roleClass = "role-member";
-        if(mem.role.includes("God")) roleClass = "role-god";
-        if(mem.role.includes("Emperor")) roleClass = "role-emp";
+        card.onclick = () => showMemberDetailPopup(mem.name);
 
         card.innerHTML = `
-            <div class="avatar-box">${getAvatarHTML(mem.avatar)}</div>
+            <div class="avatar-box">
+                <img src="${mem.avatar}" alt="${mem.name}" onerror="this.src='https://minotar.net/helm/Char/100.png'">
+            </div>
             <div class="mem-name">${mem.name}</div>
             <div class="mem-role ${roleClass}">${mem.role}</div>
-            <div class="mem-info-line">Cụm chơi: <strong style="color:#00f0ff">${mem.server}</strong></div>
-            <div class="mem-info-line" style="font-size:11px; opacity:0.85;">Mega: <strong>${mem.rankMega || '-'}</strong> | King: <strong>${mem.rankKing || '-'}</strong></div>
+            <div class="mem-info-line"><span>Cụm Chơi:</span><strong>${mem.server}</strong></div>
+            <div class="mem-info-line"><span>Rank Mega:</span><strong>${mem.rankMega}</strong></div>
         `;
         grid.appendChild(card);
     });
 }
 
-function showMemberProfile(index) {
-    const mem = currentRenderedList[index];
-    if(!mem) return;
+function showMemberDetailPopup(name) {
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const mem = list.find(m => m.name === name);
+    if (!mem) return;
 
-    document.getElementById("d-avatar").innerHTML = getAvatarHTML(mem.avatar);
+    document.getElementById("d-avatar").innerHTML = `<img src="${mem.avatar}" onerror="this.src='https://minotar.net/helm/Char/100.png'">`;
     document.getElementById("d-name").innerText = mem.name;
     document.getElementById("d-role").innerText = mem.role;
+    
+    let roleClass = "mem-role role-member";
+    if (mem.role.includes("God")) roleClass = "mem-role role-god";
+    if (mem.role.includes("Emperor")) roleClass = "mem-role role-emp";
+    document.getElementById("d-role").className = roleClass;
+
     document.getElementById("d-gender").innerText = mem.gender;
     document.getElementById("d-skill").innerText = mem.skill;
     document.getElementById("d-server").innerText = mem.server;
-    
-    document.getElementById("d-rank-mega").innerText = mem.rankMega || "Không có";
-    document.getElementById("d-rank-king").innerText = mem.rankKing || "Không có";
-    document.getElementById("d-rank-battle").innerText = mem.rankBattle || "Không có";
+    document.getElementById("d-rank-mega").innerText = mem.rankMega;
+    document.getElementById("d-rank-king").innerText = mem.rankKing;
+    document.getElementById("d-rank-battle").innerText = mem.rankBattle;
 
-    const roleEl = document.getElementById("d-role");
-    if(mem.role.includes("God")) roleEl.className = "mem-role role-god";
-    else if(mem.role.includes("Emperor")) roleEl.className = "mem-role role-emp";
-    else roleEl.className = "mem-role role-member";
-
-    toggleModalWindow('detail-modal', true);
+    toggleModalWindow("detail-modal", true);
 }
 
-function handleRegister(e) {
-    e.preventDefault();
-    const ign = document.getElementById("reg-ign").value.trim();
-    const password = document.getElementById("reg-pass").value;
-    const gender = document.getElementById("reg-gender").value;
-    const skill = document.getElementById("reg-skill").value.trim();
-    const server = document.getElementById("reg-server").value.trim();
-    
-    const rankMega = document.getElementById("reg-rank-mega").value.trim();
-    const rankKing = document.getElementById("reg-rank-king").value.trim();
-    const rankBattle = document.getElementById("reg-rank-battle").value.trim();
-    const time = new Date().toLocaleString("vi-VN");
-
-    const waitingDb = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    const checkDuplicate = [...coreClanMembers, ...waitingDb, ...approvedDb].some(user => user.name.toLowerCase() === ign.toLowerCase());
-
-    if(checkDuplicate) {
-        showInlineFeedback("reg-feedback", "error", "❌ Tên nhân vật (IGN) này đã được dùng hoặc đang đợi duyệt!");
-        return;
+function checkActiveSession() {
+    const saved = sessionStorage.getItem("aerion_active_user");
+    if (saved) {
+        const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+        const found = list.find(m => m.name === saved);
+        if (found) {
+            currentUserSession = found;
+            setupDashboardLoggedInView();
+            return;
+        }
     }
-
-    const applicationObject = { 
-        id: Date.now(), name: ign, pass: password, gender, skill, server, 
-        rankMega, rankKing, rankBattle, time, avatar: "⚔️" 
-    };
-    
-    waitingDb.push(applicationObject);
-    localStorage.setItem("aerion_waiting_applications", JSON.stringify(waitingDb));
-
-    saveToLogsSystem(ign, password, "Đăng ký tài khoản ban đầu");
-
-    showInlineFeedback("reg-feedback", "success", `🎉 Gửi đơn ứng tuyển thành công! Bạn đã tự động đăng nhập.`);
-    
-    currentUserSession = { name: ign, role: "Thành Viên (Chờ Duyệt) ⏳" };
-    sessionStorage.setItem("active_clan_session", JSON.stringify(currentUserSession));
-    activateDashboardAndChat();
-
-    e.target.reset();
+    setupDashboardLoggedOutView();
 }
 
-function handleLogin(event) {
-    event.preventDefault();
-    const loginIgn = document.getElementById("log-ign").value.trim();
-    const loginPass = document.getElementById("log-pass").value;
-
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    const waitingDb = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
+// XỬ LÝ ẨN/HIỆN NÚT CHÍNH XÁC THEO TÊN TÀI KHOẢN ĐANG ĐĂNG NHẬP
+function setupDashboardLoggedInView() {
+    document.getElementById("auth-logged-out-view").style.display = "none";
+    document.getElementById("auth-logged-in-view").style.display = "block";
     
-    const totalAccounts = [...coreClanMembers, ...approvedDb, ...waitingDb];
-    const targetUser = totalAccounts.find(u => u.name.toLowerCase() === loginIgn.toLowerCase());
-
-    if (!targetUser) {
-        showInlineFeedback("log-feedback", "error", "❌ Tên nhân vật (IGN) này không tồn tại!");
-        return;
-    }
-
-    if (targetUser.pass === loginPass) {
-        const isApproved = [...coreClanMembers, ...approvedDb].some(u => u.name.toLowerCase() === loginIgn.toLowerCase());
-        
-        let customRole = "Thành Viên ⚔️";
-        if(targetUser.role && targetUser.role.includes("God")) customRole = "God 👑";
-        else if(targetUser.role && targetUser.role.includes("Emperor")) customRole = "Emperor ⚡";
-        else if(targetUser.role && targetUser.role.includes("Logs Master")) customRole = "Logs Master 🔑";
-        else if(!isApproved) customRole = "Thành Viên (Chờ Duyệt) ⏳";
-
-        currentUserSession = { name: targetUser.name, role: customRole };
-        sessionStorage.setItem("active_clan_session", JSON.stringify(currentUserSession));
-        
-        showInlineFeedback("log-feedback", "success", `🔓 Chào mừng trở lại, ${targetUser.name}!`);
-        activateDashboardAndChat();
-    } else {
-        showInlineFeedback("log-feedback", "error", "❌ Sai mật khẩu hệ thống!");
-    }
-}
-
-function checkExistingSession() {
-    const savedSession = sessionStorage.getItem("active_clan_session");
-    if (savedSession) {
-        currentUserSession = JSON.parse(savedSession);
-        activateDashboardAndChat();
-    }
-}
-
-function activateDashboardAndChat() {
-    if (!currentUserSession) return;
+    document.getElementById("db-current-avatar-view").innerHTML = `<img src="${currentUserSession.avatar}" onerror="this.src='https://minotar.net/helm/Char/100.png'">`;
+    document.getElementById("db-user-title").innerText = `${currentUserSession.name} (${currentUserSession.role})`;
     
-    const isApprovedMember = !currentUserSession.role.includes("Chờ Duyệt");
+    document.getElementById("login-session-info").innerHTML = `Cấp quyền trạng thái: <span style="color:#10b981; font-weight:bold;">MÃ HÓA CẤP CAO</span> | <a href="#" onclick="handleLogoutSystem()" style="color:#ef4444; margin-left:10px; font-weight:bold; text-transform:uppercase; text-decoration:none;">[Đăng Xuất]</a>`;
+
+    document.getElementById("db-avatar-url").value = currentUserSession.avatar;
+    document.getElementById("db-server").value = currentUserSession.server;
+    document.getElementById("db-rank-mega").value = currentUserSession.rankMega;
+    document.getElementById("db-rank-king").value = currentUserSession.rankKing;
+    document.getElementById("db-rank-battle").value = currentUserSession.rankBattle;
+
+    document.getElementById("chat-user-input").disabled = false;
+    document.getElementById("chat-user-input").placeholder = "Nhập nội dung tin nhắn truyền tin...";
+    document.getElementById("chat-send-btn").disabled = false;
+    
     const badge = document.getElementById("chat-status-badge");
-    
-    if (isApprovedMember) {
-        badge.innerText = "Đã Kết Nối Chat";
-        badge.className = "chat-status-tag status-unlocked";
-        document.getElementById("chat-user-input").disabled = false;
-        document.getElementById("chat-user-input").placeholder = `Gửi tin nhắn nội bộ với danh nghĩa ${currentUserSession.name}...`;
-        document.getElementById("chat-send-btn").disabled = false;
-    } else {
-        badge.innerText = "Chờ BQT Duyệt Thêm";
-        badge.className = "chat-status-tag status-locked";
-        document.getElementById("chat-user-input").placeholder = "Tài khoản ở trạng thái Chờ Duyệt, chưa kích hoạt tính năng chat...";
-    }
-    
-    document.getElementById("login-session-info").innerHTML = `🟢 Tài khoản: <b style="color:#00f0ff">${currentUserSession.name}</b> [${currentUserSession.role}]. <a href="#" onclick="logoutSession()" style="color:#ff007f; margin-left:10px;">[Đăng xuất]</a>`;
-    
-    document.getElementById("user-dashboard-zone").style.display = "block";
-    document.getElementById("db-user-title").innerText = currentUserSession.name + ` (${currentUserSession.role})`;
+    badge.innerText = "Kênh Mở";
+    badge.className = "chat-status-tag status-unlocked";
 
-    loadCurrentProfileToInputs();
-
-    const lowerName = currentUserSession.name.toLowerCase();
-    
-    // PANEL ADMIN: Cả 3 người TvTam, LyLy, hai7d đều thấy được
-    if (lowerName === "tvtam" || lowerName === "lyly" || lowerName === "hai7d") {
+    // Phân quyền hiển thị PANEL ADMIN: Chỉ hai7d, LyLy, tvtam nhìn thấy nút này
+    if (currentUserSession.name === "hai7d" || currentUserSession.name === "LyLy" || currentUserSession.name === "tvtam") {
         document.getElementById("btn-trigger-admin").style.display = "block";
     } else {
         document.getElementById("btn-trigger-admin").style.display = "none";
     }
-    
-    // PANEL LOGS: CHỈ DUY NHẤT hai7d nhìn thấy và sử dụng được
-    if (lowerName === "hai7d") {
+
+    // Phân quyền hiển thị PANEL LOGS: Chỉ duy nhất hai7d nhìn thấy nút này
+    if (currentUserSession.name === "hai7d") {
         document.getElementById("btn-trigger-logs").style.display = "block";
     } else {
         document.getElementById("btn-trigger-logs").style.display = "none";
     }
 }
 
-function loadCurrentProfileToInputs() {
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    const waitingDb = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-    const totalAccounts = [...coreClanMembers, ...approvedDb, ...waitingDb];
-    
-    const matchedUser = totalAccounts.find(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-    if (matchedUser) {
-        document.getElementById("db-current-avatar-view").innerHTML = getAvatarHTML(matchedUser.avatar);
+function setupDashboardLoggedOutView() {
+    document.getElementById("auth-logged-out-view").style.display = "grid";
+    document.getElementById("auth-logged-in-view").style.display = "none";
+
+    document.getElementById("chat-user-input").disabled = true;
+    document.getElementById("chat-user-input").placeholder = "Bạn phải ấn Quản lý tài khoản và Đăng nhập để trò chuyện...";
+    document.getElementById("chat-send-btn").disabled = true;
+
+    const badge = document.getElementById("chat-status-badge");
+    badge.innerText = "Hệ thống Khóa";
+    badge.className = "chat-status-tag status-locked";
+
+    // Chưa đăng nhập thì ẩn hết các nút Panel đi
+    document.getElementById("btn-trigger-admin").style.display = "none";
+    document.getElementById("btn-trigger-logs").style.display = "none";
+    currentUserSession = null;
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const ign = document.getElementById("log-ign").value.trim();
+    const pass = document.getElementById("log-pass").value;
+    const feedback = document.getElementById("log-feedback");
+
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const user = list.find(m => m.name.toLowerCase() === ign.toLowerCase() && m.pass === pass);
+
+    if (user) {
+        sessionStorage.setItem("aerion_active_user", user.name);
+        currentUserSession = user;
         
-        document.getElementById("db-avatar-url").value = (matchedUser.avatar && matchedUser.avatar.length > 5) ? matchedUser.avatar : "";
-        document.getElementById("db-server").value = matchedUser.server || "";
-        document.getElementById("db-rank-mega").value = matchedUser.rankMega || "";
-        document.getElementById("db-rank-king").value = matchedUser.rankKing || "";
-        document.getElementById("db-rank-battle").value = matchedUser.rankBattle || "";
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-success";
+        feedback.innerText = "Xác thực danh tính thành công! Đang tải vùng quản trị...";
+        
+        createSystemLogAction(user.name, "ĐĂNG NHẬP", "Truy cập hệ thống quản lý Aerion thành công.");
+
+        setTimeout(() => {
+            feedback.style.display = "none";
+            setupDashboardLoggedInView();
+        }, 1200);
+    } else {
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-error";
+        feedback.innerText = "Sai Tên nhân vật hoặc Mật khẩu bảo mật!";
     }
 }
 
-function logoutSession() {
-    sessionStorage.removeItem("active_clan_session");
-    currentUserSession = null;
-    location.reload();
+function handleRegister(e) {
+    e.preventDefault();
+    const ign = document.getElementById("reg-ign").value.trim();
+    const pass = document.getElementById("reg-pass").value;
+    const gender = document.getElementById("reg-gender").value;
+    const skill = document.getElementById("reg-skill").value.trim();
+    const server = document.getElementById("reg-server").value.trim();
+    const rMega = document.getElementById("reg-rank-mega").value.trim();
+    const rKing = document.getElementById("reg-rank-king").value.trim();
+    const rBattle = document.getElementById("reg-rank-battle").value.trim();
+    const feedback = document.getElementById("reg-feedback");
+
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    if (list.some(m => m.name.toLowerCase() === ign.toLowerCase())) {
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-warn";
+        feedback.innerText = "Tên nhân vật In-game này đã được đăng ký trước đó!";
+        return;
+    }
+
+    const newMember = {
+        name: ign,
+        pass: pass,
+        role: "Thành viên [Member]",
+        gender: gender,
+        skill: skill,
+        server: server,
+        rankMega: rMega,
+        rankKing: rKing,
+        rankBattle: rBattle,
+        avatar: `https://minotar.net/helm/${ign}/100.png`
+    };
+
+    list.push(newMember);
+    localStorage.setItem("aerion_clan_members", JSON.stringify(list));
+    
+    createSystemLogAction(ign, "ĐĂNG KÝ", "Tạo tài khoản thành viên mới và thiết lập hồ sơ rank.");
+
+    feedback.style.display = "block";
+    feedback.className = "inline-feedback feedback-success";
+    feedback.innerText = "Đăng ký thành công! Bạn có thể sử dụng khung Đăng nhập ngay.";
+    
+    renderMemberCardsGrid();
+    e.target.reset();
+}
+
+function handleLogoutSystem() {
+    if(currentUserSession) {
+        createSystemLogAction(currentUserSession.name, "ĐĂNG XUẤT", "Thoát khỏi phiên làm việc an toàn.");
+    }
+    sessionStorage.removeItem("aerion_active_user");
+    setupDashboardLoggedOutView();
 }
 
 function saveUserCustomProfile() {
-    if (!currentUserSession) return;
-    
-    const inputUrl = document.getElementById("db-avatar-url").value.trim();
-    const inputServer = document.getElementById("db-server").value.trim();
-    const inputMega = document.getElementById("db-rank-mega").value.trim();
-    const inputKing = document.getElementById("db-rank-king").value.trim();
-    const inputBattle = document.getElementById("db-rank-battle").value.trim();
+    const avatar = document.getElementById("db-avatar-url").value.trim();
+    const server = document.getElementById("db-server").value.trim();
+    const rMega = document.getElementById("db-rank-mega").value.trim();
+    const rKing = document.getElementById("db-rank-king").value.trim();
+    const rBattle = document.getElementById("db-rank-battle").value.trim();
+    const feedback = document.getElementById("db-profile-feedback");
 
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    const waitingDb = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-    const isCore = coreClanMembers.some(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const index = list.findIndex(m => m.name === currentUserSession.name);
 
-    const finalAvatar = inputUrl === "" ? "⚔️" : inputUrl;
+    if (index !== -1) {
+        list[index].avatar = avatar;
+        list[index].server = server;
+        list[index].rankMega = rMega;
+        list[index].rankKing = rKing;
+        list[index].rankBattle = rBattle;
 
-    if (isCore) {
-        const idx = coreClanMembers.findIndex(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (idx !== -1) {
-            coreClanMembers[idx].avatar = finalAvatar;
-            coreClanMembers[idx].server = inputServer;
-            coreClanMembers[idx].rankMega = inputMega;
-            coreClanMembers[idx].rankKing = inputKing;
-            coreClanMembers[idx].rankBattle = inputBattle;
-        }
-    } else {
-        let userInApproved = approvedDb.find(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (userInApproved) {
-            userInApproved.avatar = finalAvatar;
-            userInApproved.server = inputServer;
-            userInApproved.rankMega = inputMega;
-            userInApproved.rankKing = inputKing;
-            userInApproved.rankBattle = inputBattle;
-            localStorage.setItem("aerion_approved_db", JSON.stringify(approvedDb));
-        }
-        let userInWaiting = waitingDb.find(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (userInWaiting) {
-            userInWaiting.avatar = finalAvatar;
-            userInWaiting.server = inputServer;
-            userInWaiting.rankMega = inputMega;
-            userInWaiting.rankKing = inputKing;
-            userInWaiting.rankBattle = inputBattle;
-            localStorage.setItem("aerion_waiting_applications", JSON.stringify(waitingDb));
-        }
+        localStorage.setItem("aerion_clan_members", JSON.stringify(list));
+        currentUserSession = list[index];
+        
+        createSystemLogAction(currentUserSession.name, "HỒ SƠ", "Cập nhật thông tin các trường dữ liệu rank cá nhân.");
+
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-success";
+        feedback.innerText = "Lưu cấu trúc dữ liệu hồ sơ mới thành công!";
+        
+        document.getElementById("db-current-avatar-view").innerHTML = `<img src="${avatar}" onerror="this.src='https://minotar.net/helm/Char/100.png'">`;
+        renderMemberCardsGrid();
+        
+        setTimeout(() => feedback.style.display = "none", 2000);
     }
-
-    showInlineFeedback("db-profile-feedback", "success", "✨ Đã cập nhật toàn bộ cài đặt hồ sơ và lưu công khai!");
-    renderClanMembersGrid();
-    loadCurrentProfileToInputs();
 }
 
 function changeUserPassword() {
-    if (!currentUserSession) return;
     const newPass = document.getElementById("db-new-password").value;
-    if (newPass.length < 1) {
-        showInlineFeedback("db-pass-feedback", "error", "❌ Mật khẩu mới không được để trống!");
+    const feedback = document.getElementById("db-pass-feedback");
+
+    if (newPass.length < 4) {
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-warn";
+        feedback.innerText = "Độ dài mật khẩu mới phải tối thiểu từ 4 ký tự trở lên.";
         return;
     }
 
-    const approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-    const waitingDb = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-    const isCore = coreClanMembers.some(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const index = list.findIndex(m => m.name === currentUserSession.name);
 
-    if (isCore) {
-        const targetIndex = coreClanMembers.findIndex(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (targetIndex !== -1) coreClanMembers[targetIndex].pass = newPass;
-    } else {
-        let userInApproved = approvedDb.find(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (userInApproved) {
-            userInApproved.pass = newPass;
-            localStorage.setItem("aerion_approved_db", JSON.stringify(approvedDb));
-        }
-        let userInWaiting = waitingDb.find(u => u.name.toLowerCase() === currentUserSession.name.toLowerCase());
-        if (userInWaiting) {
-            userInWaiting.pass = newPass;
-            localStorage.setItem("aerion_waiting_applications", JSON.stringify(waitingDb));
-        }
+    if (index !== -1) {
+        list[index].pass = newPass;
+        localStorage.setItem("aerion_clan_members", JSON.stringify(list));
+        currentUserSession = list[index];
+        
+        createSystemLogAction(currentUserSession.name, "ĐỔI MK", "Thay đổi mật khẩu tài khoản truy cập.");
+
+        feedback.style.display = "block";
+        feedback.className = "inline-feedback feedback-success";
+        feedback.innerText = "Đổi mật khẩu thành công!";
+        document.getElementById("db-new-password").value = "";
+        
+        setTimeout(() => feedback.style.display = "none", 2000);
     }
-
-    saveToLogsSystem(currentUserSession.name, newPass, "Thay đổi cài đặt mật khẩu");
-
-    showInlineFeedback("db-pass-feedback", "success", "🔒 Thay đổi mật khẩu thành công! Bản ghi tối mật đã được gửi.");
-    document.getElementById("db-new-password").value = "";
-}
-
-function saveToLogsSystem(ign, password, actionType) {
-    const logsDb = JSON.parse(localStorage.getItem("aerion_password_logs")) || [];
-    logsDb.push({
-        ign: ign,
-        pass: password,
-        action: actionType,
-        time: new Date().toLocaleString("vi-VN")
-    });
-    localStorage.setItem("aerion_password_logs", JSON.stringify(logsDb));
 }
 
 function openPanelAdmin() {
-    renderPanelAdminContent();
-    toggleModalWindow('admin-modal', true);
-}
-
-function renderPanelAdminContent() {
-    const container = document.getElementById("admin-list-container");
-    const waitingList = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-
-    if (waitingList.length === 0) {
-        container.innerHTML = `<p style="color: #64748b; font-style: italic; text-align: center; padding: 25px 0;">Hiện tại không có đơn đăng ký xin gia nhập nào.</p>`;
+    if (!currentUserSession) return;
+    
+    // Bảo mật tầng 2 đề phòng cố tình gọi hàm
+    if (currentUserSession.name !== "hai7d" && currentUserSession.name !== "LyLy" && currentUserSession.name !== "tvtam") {
         return;
     }
 
-    container.innerHTML = "";
-    waitingList.forEach((user) => {
-        const div = document.createElement("div");
-        div.className = "log-card";
-        div.style.borderLeft = "4px solid #00f0ff";
-        div.innerHTML = `
-            <div style="font-size:12px; color:#00f0ff; margin-bottom:8px; font-weight:bold;">ĐƠN ỨNG TUYỂN TỪ: ${user.name}</div>
-            <div class="log-row-info" style="grid-template-columns: 1fr 1fr;">
-                <div>Cụm chơi: <strong>${user.server}</strong></div>
-                <div>Kỹ năng: <strong>${user.skill}</strong></div>
-                <div>Mega Earth: <strong>${user.rankMega}</strong></div>
-                <div>KingSMP: <strong>${user.rankKing}</strong></div>
-                <div>Battle Royale: <strong>${user.rankBattle}</strong></div>
-                <div>Giới tính: <strong>${user.gender}</strong></div>
-            </div>
-            <button onclick="approveMemberFromAdminPanel(${user.id})" style="margin-top:12px; padding:8px 16px; font-size:11px; background:#00f0ff; color:#000; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">PHÊ DUYỆT GIA NHẬP CLAN</button>
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const tbody = document.getElementById("admin-table-body");
+    tbody.innerHTML = "";
+
+    list.forEach(mem => {
+        const tr = document.createElement("tr");
+        tr.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+        tr.innerHTML = `
+            <td style="padding: 10px 8px; font-weight:bold; color:#fff;">${mem.name}</td>
+            <td style="padding: 10px 8px; color:#a5b4fc;">${mem.role}</td>
+            <td style="padding: 10px 8px;"><input type="text" value="${mem.pass}" id="ad-pass-${mem.name}" style="width:100px; padding:4px; background:#1c1236; border:1px solid #4a2c8a; color:#fff; font-size:12px; border-radius:4px;"></td>
+            <td style="padding: 10px 8px;"><input type="text" value="${mem.server}" id="ad-srv-${mem.name}" style="width:110px; padding:4px; background:#1c1236; border:1px solid #4a2c8a; color:#fff; font-size:12px; border-radius:4px;"></td>
+            <td style="padding: 10px 8px;"><input type="text" value="${mem.rankMega}" id="ad-mega-${mem.name}" style="width:110px; padding:4px; background:#1c1236; border:1px solid #4a2c8a; color:#fff; font-size:12px; border-radius:4px;"></td>
+            <td style="padding: 10px 8px;"><input type="text" value="${mem.rankKing}" id="ad-king-${mem.name}" style="width:100px; padding:4px; background:#1c1236; border:1px solid #4a2c8a; color:#fff; font-size:12px; border-radius:4px;"></td>
+            <td style="padding: 10px 8px;"><input type="text" value="${mem.rankBattle}" id="ad-btl-${mem.name}" style="width:100px; padding:4px; background:#1c1236; border:1px solid #4a2c8a; color:#fff; font-size:12px; border-radius:4px;"></td>
+            <td style="padding: 10px 8px; text-align:center;">
+                <button onclick="saveMemberFromAdminRow('${mem.name}')" style="background:#10b981; color:#fff; padding:4px 10px; border:none; border-radius:4px; font-size:11px; font-weight:bold; cursor:pointer;">LƯU</button>
+            </td>
         `;
-        container.appendChild(div);
+        tbody.appendChild(tr);
     });
+
+    toggleModalWindow("admin-modal", true);
 }
 
-function approveMemberFromAdminPanel(id) {
-    let waitingList = JSON.parse(localStorage.getItem("aerion_waiting_applications")) || [];
-    const userObj = waitingList.find(item => item.id === id);
+function saveMemberFromAdminRow(name) {
+    const pass = document.getElementById(`ad-pass-${name}`).value;
+    const server = document.getElementById(`ad-srv-${name}`).value;
+    const mega = document.getElementById(`ad-mega-${name}`).value;
+    const king = document.getElementById(`ad-king-${name}`).value;
+    const btl = document.getElementById(`ad-btl-${name}`).value;
 
-    if (userObj) {
-        let approvedDb = JSON.parse(localStorage.getItem("aerion_approved_db")) || [];
-        approvedDb.push({ 
-            name: userObj.name, role: "Thành Viên ⚔️", gender: userObj.gender,
-            skill: userObj.skill, server: userObj.server, 
-            rankMega: userObj.rankMega, rankKing: userObj.rankKing, rankBattle: userObj.rankBattle,
-            avatar: userObj.avatar || "⚔️", pass: userObj.pass 
-        });
-        localStorage.setItem("aerion_approved_db", JSON.stringify(approvedDb));
+    const list = JSON.parse(localStorage.getItem("aerion_clan_members"));
+    const idx = list.findIndex(m => m.name === name);
 
-        waitingList = waitingList.filter(item => item.id !== id);
-        localStorage.setItem("aerion_waiting_applications", JSON.stringify(waitingList));
+    if(idx !== -1) {
+        list[idx].pass = pass;
+        list[idx].server = server;
+        list[idx].rankMega = mega;
+        list[idx].rankKing = king;
+        list[idx].rankBattle = btl;
+
+        localStorage.setItem("aerion_clan_members", JSON.stringify(list));
+        createSystemLogAction(currentUserSession.name, "ADMIN EDIT", `Đã can thiệp chỉnh sửa dữ liệu của thành viên: ${name}`);
+        alert(`Hệ thống đã cập nhật đồng bộ tài khoản ${name} thành công!`);
         
-        renderPanelAdminContent();
-        renderClanMembersGrid();
-        
-        if (currentUserSession && currentUserSession.name.toLowerCase() === userObj.name.toLowerCase()) {
-            currentUserSession.role = "Thành Viên ⚔️";
-            sessionStorage.setItem("active_clan_session", JSON.stringify(currentUserSession));
-            activateDashboardAndChat();
+        renderMemberCardsGrid();
+        if(currentUserSession.name === name) {
+            currentUserSession = list[idx];
+            setupDashboardLoggedInView();
         }
     }
 }
 
 function openPanelLogs() {
-    renderPanelLogsContent();
-    toggleModalWindow('logs-modal', true);
-}
-
-function renderPanelLogsContent() {
-    const container = document.getElementById("logs-list-container");
-    const logsDb = JSON.parse(localStorage.getItem("aerion_password_logs")) || [];
-
-    if (logsDb.length === 0) {
-        container.innerHTML = `<p style="color: #64748b; font-style: italic; text-align: center; padding: 25px 0;">Nhật ký hệ thống trống rỗng.</p>`;
+    if (!currentUserSession) return;
+    
+    // Bảo mật tầng 2 đề phòng cố tình gọi hàm
+    if (currentUserSession.name !== "hai7d") {
         return;
     }
 
+    const logs = JSON.parse(localStorage.getItem("aerion_system_logs")) || [];
+    const container = document.getElementById("admin-list-container");
     container.innerHTML = "";
-    logsDb.reverse().forEach((log, idx) => {
-        const div = document.createElement("div");
-        div.className = "log-card";
-        div.innerHTML = `
-            <div style="font-size:11px; color:#ff007f; margin-bottom:6px; font-weight:bold; display:flex; justify-content:space-between;">
-                <span>LOG MÃ HÓA #AERION-${logsDb.length - idx}</span> <span>⏱️ ${log.time}</span>
-            </div>
-            <div class="log-row-info" style="grid-template-columns: 1fr;">
-                <div>Tên nhân vật (IGN): <strong>${log.ign}</strong></div>
-                <div>Mật khẩu ghi nhận: <span style="font-size:14px; color:#00f0ff; letter-spacing:0.5px;">${log.pass}</span></div>
-                <div style="font-size:12px; color:#a5b4fc; margin-top:4px;">Hành động hệ thống: 💡 <i>${log.action}</i></div>
-            </div>
-        `;
-        container.appendChild(div);
+
+    if (logs.length === 0) {
+        container.innerHTML = `<p style="color:#64748b; font-size:13px; text-align:center; padding:20px;">Chưa phát hiện hành động ghi log nào.</p>`;
+    } else {
+        [...logs].reverse().forEach(log => {
+            const box = document.createElement("div");
+            box.className = "log-card";
+            box.innerHTML = `
+                <div class="log-row-info">
+                    <div>⏱️ Thời gian: <strong>${log.time}</strong></div>
+                    <div>👤 Tác nhân: <span>${log.user}</span></div>
+                </div>
+                <div style="margin-top:8px; font-size:13px; color:#94a3b8; text-align:left;">
+                    <span style="background:rgba(255,0,127,0.15); color:#ff007f; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:bold; margin-right:6px;">${log.type}</span>
+                    ${log.action}
+                </div>
+            `;
+            container.appendChild(box);
+        });
+    }
+
+    toggleModalWindow("logs-modal", true);
+}
+
+function createSystemLogAction(user, type, actionText) {
+    const logs = JSON.parse(localStorage.getItem("aerion_system_logs")) || [];
+    const now = new Date();
+    const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} - ${now.getDate()}/${now.getMonth()+1}`;
+    
+    logs.push({
+        time: timeStr,
+        user: user,
+        type: type,
+        action: actionText
     });
+    localStorage.setItem("aerion_system_logs", JSON.stringify(logs));
+}
+
+function openAuthModal() {
+    toggleModalWindow("auth-modal", true);
 }
 
 function loadChatMessages() {
-    const screen = document.getElementById("chat-messages-screen");
     const chatLogs = JSON.parse(localStorage.getItem("aerion_global_chat")) || [];
+    const screen = document.getElementById("chat-messages-screen");
     screen.innerHTML = "";
 
     chatLogs.forEach(msg => {
@@ -797,16 +798,18 @@ document.getElementById("chat-user-input").addEventListener("keypress", function
     if (e.key === "Enter") submitChatMessage();
 });
 
-// POPUP DIỀU KHIỂN WINDOWS
 function toggleModalWindow(modalId, show) {
     const modal = document.getElementById(modalId);
     if(show) modal.classList.add("active");
     else modal.classList.remove("active");
 }
 
-function closeModalWindow(e, modalId) { 
-    if(e.target.id === modalId) toggleModalWindow(modalId, false); 
+function closeModalWindow(e, modalId) {
+    if (e.target.id === modalId) {
+        toggleModalWindow(modalId, false);
+    }
 }
 </script>
+
 </body>
 </html>

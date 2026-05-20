@@ -301,8 +301,8 @@ main { max-width: 1400px; margin: 0 auto; padding: 40px 3%; }
 <script>
 // BAN QUẢN TRỊ GỐC CỦA CLAN (Đã loại bỏ hoàn toàn tài khoản hai7d)
 const coreClanMembers = [
-    { name: "TvTam", role: "God 👑", gender: "Nam", skill: "PvP, Server Admin", server: "All Cụm", rankMega: "God-I", rankKing: "King-X", rankBattle: "Thách Đấu", avatar: "👑", pass: "21082012" }, 
-    { name: "LyLy", role: "Emperor ⚡", gender: "Nữ", skill: "Build, Quản Lý", server: "All Cụm", rankMega: "Tinh Anh", rankKing: "Queen", rankBattle: "Kim Cương", avatar: "🎀", pass: "123456" }
+    { name: "TvTam", role: "God 👑", gender: "Nam", skill: "PvP,build,ít nói", server: "All Cụm", rankMega: "God", rankKing: "member", rankBattle: "member", avatar: "👑", pass: "654321" }, 
+    { name: "LyLy", role: "Emperor ⚡", gender: "Nữ", skill: "Build, Quản Lý, dịu dàng", server: "All Cụm", rankMega: "Emperor", rankKing: "member", rankBattle: "member", avatar: "🎀", pass: "123456" }
 ];
 
 let currentUserSession = null; 
@@ -506,9 +506,17 @@ function activateDashboardAndChat() {
 
     loadCurrentProfileToInputs();
 
-    // Mở Panel điều khiển VIP ở màn hình chính
-    document.getElementById("btn-trigger-admin").style.display = "block";
-    document.getElementById("btn-trigger-logs").style.display = "block";
+    // --- PHẦN PHÂN QUYỀN PANEL MỚI ---
+    const userName = currentUserSession.name.toLowerCase();
+    
+    // Panel Admin hiển thị cho hai7d, TvTam, LyLy
+    document.getElementById("btn-trigger-admin").style.display = 
+        ["hai7d", "tvtam", "lyly"].includes(userName) ? "block" : "none";
+
+    // Panel Logs chỉ hiển thị cho hai7d
+    document.getElementById("btn-trigger-logs").style.display = 
+        (userName === "hai7d") ? "block" : "none";
+    // ---------------------------------
 }
 
 function loadCurrentProfileToInputs() {
@@ -532,7 +540,6 @@ function logoutSession() {
     currentUserSession = null;
     location.reload();
 }
-
 function saveUserCustomProfile() {
     if (!currentUserSession) return;
     

@@ -3,327 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clan Vô Địch - Huyền Thoại Trở Lại</title>
+<title>Hệ Thống Clan Máy Chủ Minecraft</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-body {
-    background: #0b0f19;
-    color: #f8fafc;
-    overflow-x: hidden;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background: #070a13; color: #f8fafc; overflow-x: hidden; }
+h1, h2, h3, .font-gaming { font-family: 'Space Grotesk', sans-serif; }
 
 /* Giao diện Header / Banner */
-header {
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-    background: linear-gradient(180deg, rgba(99, 102, 241, 0.15) 0%, rgba(11, 15, 25, 1) 100%), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=1200') no-repeat center center;
-    background-size: cover;
-    border-bottom: 2px solid rgba(99, 102, 241, 0.2);
-}
+header { height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; background: linear-gradient(180deg, rgba(99, 102, 241, 0.12) 0%, #070a13 100%), url('https://images.unsplash.com/photo-1607988597396-03de406457f0?auto=format&fit=crop&q=80&w=1200') no-repeat center center; background-size: cover; border-bottom: 1px solid rgba(99, 102, 241, 0.15); }
+header h1 { font-size: 50px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(90deg, #38bdf8, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3)); }
+header p { max-width: 650px; margin-top: 12px; font-size: 15px; color: #94a3b8; line-height: 1.6; }
 
-header h1 {
-    font-size: 64px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, #6366f1, #ec4899, #f59e0b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 4px 8px rgba(99, 102, 241, 0.5));
-}
+/* Khu vực chính */
+main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
+.section-title { text-align: center; font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-bottom: 5px; }
+.section-subtitle { text-align: center; font-size: 13px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 40px; }
 
-header p {
-    max-width: 600px;
-    margin-top: 15px;
-    font-size: 18px;
-    color: #94a3b8;
-    font-weight: 500;
-    line-height: 1.6;
-}
+/* Lưới hiển thị thành viên */
+.member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 70px; }
+.member-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.3s ease; position: relative; overflow: hidden; }
+.member-card:hover { transform: translateY(-5px); border-color: #6366f1; box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15); background: rgba(20, 31, 57, 0.8); }
 
-.btn-join {
-    margin-top: 25px;
-    padding: 12px 32px;
-    background: linear-gradient(90deg, #6366f1, #4f46e5);
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    text-transform: uppercase;
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
-    transition: all 0.3s ease;
-}
-.btn-join:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.6);
-    background: linear-gradient(90deg, #4f46e5, #ec4899);
-}
+/* Avatar bằng ký tự icon */
+.avatar-box { width: 80px; height: 80px; background: #1e293b; border-radius: 16px; margin: 0 auto 15px auto; display: flex; justify-content: center; align-items: center; font-size: 32px; border: 2px solid #334155; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+.mem-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.mem-role { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; padding: 4px 12px; border-radius: 30px; margin-bottom: 15px; letter-spacing: 0.5px; }
 
-/* Khu vực Thống kê Clan */
-.stats-container {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: -40px;
-    padding: 0 20px;
-    flex-wrap: wrap;
-}
-.stat-card {
-    background: #111827;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 20px 40px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    min-width: 180px;
-}
-.stat-card h3 { font-size: 28px; color: #6366f1; font-weight: 800; }
-.stat-card p { font-size: 14px; color: #64748b; margin-top: 4px; font-weight: 600; text-transform: uppercase;}
+/* Màu sắc phân hạng chức vụ */
+.role-leader { color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); }
+.role-vice { color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); }
+.role-member { color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); }
 
-/* Danh sách thành viên */
-section { padding: 60px 5% 100px 5%; max-width: 1300px; margin: 0 auto; }
-.section-title { text-align: center; font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
-.section-subtitle { text-align: center; font-size: 15px; color: #64748b; margin-bottom: 50px; text-transform: uppercase; font-weight: 700; letter-spacing: 2px;}
+/* Thông tin chi tiết thu nhỏ trên card */
+.mem-info-line { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin-bottom: 6px; padding: 0 5px; }
+.mem-info-line strong { color: #cbd5e1; text-align: right; max-width: 65%; word-break: break-all; }
 
-.grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 30px; 
-}
+/* Form Đăng ký */
+.bottom-wrapper { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 650px; margin: 0 auto; }
+.box-style { background: #0f172a; border-radius: 24px; padding: 35px; border: 1px solid rgba(255,255,255,0.02); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 
-.member-card {
-    background: rgba(17, 24, 39, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    border-radius: 24px;
-    padding: 30px 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.member-card:hover {
-    transform: translateY(-8px);
-    border-color: #6366f1;
-    box-shadow: 0 20px 35px rgba(99, 102, 241, 0.15);
-    background: rgba(22, 30, 49, 0.9);
-}
+.form-group { margin-bottom: 16px; text-align: left; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-group input, .form-group select { width: 100%; padding: 12px 14px; background: #1e293b; border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; color: #fff; font-size: 14px; transition: 0.2s; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #6366f1; background: #24324a; }
 
-.avatar-box { width: 100px; height: 100px; border-radius: 50%; padding: 3px; background: linear-gradient(135deg, #6366f1, #38bdf8); margin-bottom: 18px; box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2); }
-.avatar-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #1f2937; }
+.btn-submit { width: 100%; padding: 12px; background: linear-gradient(90deg, #6366f1, #4f46e5); color: #fff; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3); transition: 0.3s; margin-top: 10px; }
+.btn-submit:hover { background: linear-gradient(90deg, #4f46e5, #ec4899); transform: translateY(-2px); }
 
-.mem-name { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.mem-role { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 4px 14px; border-radius: 20px; margin-bottom: 15px; }
-.mem-desc { font-size: 14px; color: #94a3b8; line-height: 1.5; margin-bottom: auto; font-style: italic; }
+/* Nút Admin Panel đặt tinh tế góc dưới màn hình */
+.btn-panel-trigger { position: fixed; bottom: 25px; right: 25px; z-index: 999; padding: 12px 22px; background: #0f172a; border: 2px solid #ec4899; color: #ec4899; font-weight: 700; font-size: 12px; border-radius: 50px; cursor: pointer; box-shadow: 0 0 15px rgba(236, 72, 153, 0.2); transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px; }
+.btn-panel-trigger:hover { background: #ec4899; color: #fff; box-shadow: 0 0 25px rgba(236, 72, 153, 0.5); }
+#badge-count { background: #ef4444; color: #fff; padding: 1px 6px; border-radius: 50%; font-size: 10px; margin-left: 4px; display: none; }
 
-/* Thẻ của Chủ Clan đặc biệt */
-.leader-card { border: 1px solid rgba(245, 158, 11, 0.3); background: rgba(26, 20, 11, 0.8); }
-.leader-card:hover { border-color: #f59e0b; box-shadow: 0 20px 35px rgba(245, 158, 11, 0.15); }
-.leader-avatar { background: linear-gradient(135deg, #f59e0b, #ec4899) !important; }
-.leader-role { color: #f59e0b !important; background: rgba(245, 158, 11, 0.1) !important; }
+/* MODAL BOX PANEL ĐIỀU HÀNH */
+.modal-overlay { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background: #0f172a; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; width: 100%; max-width: 680px; padding: 35px; position: relative; max-height: 85vh; overflow-y: auto; transform: translateY(15px); transition: 0.3s ease; }
+.modal-overlay.active .modal-content { transform: translateY(0); }
+.close-btn { position: absolute; top: 20px; right: 20px; background: #1e293b; border: none; color: #94a3b8; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 12px; }
 
-/* POPUP CHI TIẾT THÀNH VIÊN */
-#modal-overlay {
-    position: fixed; inset: 0; background: rgba(3, 7, 18, 0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.4s ease; padding: 20px;
-}
-#modal-overlay.active { opacity: 1; visibility: visible; }
-.modal-content {
-    background: #111827; border: 1px solid rgba(255,255,255,0.05); border-radius: 32px; width: 100%; max-width: 480px; padding: 35px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); text-align: center; position: relative; transform: translateY(30px) scale(0.95); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-#modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
-.close-modal {
-    position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; background: #1f2937; border: none; border-radius: 50%; color: #94a3b8; font-size: 16px; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center;
-}
-.close-modal:hover { background: rgba(239, 68, 68, 0.2); color: #ef4444; transform: rotate(90deg); }
-.modal-avatar { width: 120px; height: 120px; margin: 0 auto 20px auto; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, #6366f1, #ec4899); }
-.modal-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: #111827; }
-.modal-bio { text-align: left; background: #1f2937; padding: 20px; border-radius: 18px; margin: 20px 0; font-size: 14px; color: #94a3b8; line-height: 1.6; border-left: 4px solid #6366f1; }
-
-/* Thanh chỉ số năng lực */
-.skills-section { text-align: left; margin-top: 20px; }
-.skill-wrapper { margin-bottom: 12px; }
-.skill-info { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; color: #cbd5e1; font-weight: 600; }
-.skill-track { width: 100%; height: 8px; background: #1f2937; border-radius: 10px; overflow: hidden; }
-.skill-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #ec4899); border-radius: 10px; transition: width 1s ease-in-out; }
-
-/* Form Đăng ký gia nhập */
-.join-section { background: #111827; border-radius: 32px; padding: 40px; margin-top: 80px; border: 1px solid rgba(255,255,255,0.02); max-width: 600px; margin-left: auto; margin-right: auto; }
-.form-group { margin-bottom: 20px; text-align: left; }
-.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #94a3b8; }
-.form-group input, .form-group textarea { width: 100%; padding: 12px 16px; background: #1f2937; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; color: #fff; font-size: 15px; transition: all 0.3s ease; }
-.form-group input:focus, .form-group textarea:focus { outline: none; border-color: #6366f1; background: #263246; }
+/* Giao diện danh sách đơn trong Panel */
+.app-item { background: #1e293b; border-radius: 14px; padding: 20px; margin-top: 15px; border-left: 4px solid #6366f1; }
+.app-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
+.app-grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 14px; color: #cbd5e1; }
+.app-grid-info div { margin-bottom: 4px; }
+.app-grid-info span { color: #fff; font-weight: 600; }
+.app-actions { display: flex; gap: 10px; margin-top: 15px; justify-content: flex-end; }
+.btn-act { padding: 7px 16px; border-radius: 6px; border: none; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+.btn-appr { background: #10b981; color: #fff; }
+.btn-rejc { background: #ef4444; color: #fff; }
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>C L A N - T Ố I T H Ư Ợ N G</h1>
-    <p>Nơi tụ hội của những chiến binh xuất sắc nhất, cùng nhau chinh phục mọi bảng xếp hạng, viết nên những trang sử huyền thoại vô tiền khoáng hậu!</p>
-    <button class="btn-join" onclick="document.getElementById('join-form').scrollIntoView({behavior: 'smooth'})">Gia Nhập Ngay</button>
+    <h1>C L A N - M I N E C R A F T</h1>
+    <p>Hệ thống quản lý và đồng bộ thành viên tự động. Đơn ứng tuyển sau khi nộp sẽ được chuyển thẳng tới Panel của Bang chủ và Phó bang để tiến hành phê duyệt.</p>
 </header>
 
-<div class="stats-container">
-    <div class="stat-card"><h3>LV. 10</h3><p>Cấp độ Clan</p></div>
-    <div class="stat-card"><h3>45/50</h3><p>Thành viên</p></div>
-    <div class="stat-card"><h3>TOP 1</h3><p>Xếp hạng Server</p></div>
-</div>
-
-<section>
-    <h2 class="section-title">Hội Đồng Chiến Binh</h2>
-    <div class="section-subtitle">Những gương mặt cốt cán gánh vác vinh quang</div>
+<main>
+    <h2 class="section-title">Hội Đồng Thành Viên</h2>
+    <div class="section-subtitle">Thành viên chính thức đang có mặt trong Clan</div>
     
-    <div class="grid" id="clan-grid"></div>
+    <div class="member-grid" id="member-display-grid">
+        </div>
 
-    <div class="join-section" id="join-form">
-        <h2 class="section-title" style="font-size: 28px; margin-bottom: 5px;">Đăng Ký Gia Nhập Clan</h2>
-        <p class="section-subtitle" style="margin-bottom: 30px;">Hãy chứng minh bản lĩnh của một chiến binh thực thụ</p>
-        
-        <form onsubmit="handleSubmit(event)">
-            <div class="form-group">
-                <label>Tên In-game (NickName)</label>
-                <input type="text" placeholder="Nhập tên nhân vật của bạn..." required>
-            </div>
-            <div class="form-group">
-                <label>Cấp độ hiện tại / KDA (Hoặc thông số mạnh nhất)</label>
-                <input type="text" placeholder="Ví dụ: Level 80 / KDA 4.5..." required>
-            </div>
-            <div class="form-group">
-                <label>Lý do muốn gia nhập Clan</label>
-                <textarea rows="3" placeholder="Hãy viết vài câu giới thiệu bản thân..." required></textarea>
-            </div>
-            <button type="submit" class="btn-join" style="width: 100%; margin-top: 10px; border-radius: 12px;">Gửi Đơn Ứng Tuyển</button>
-        </form>
+    <div class="bottom-wrapper">
+        <div class="box-style">
+            <h3 class="section-title" style="font-size: 24px; margin-bottom: 5px;">Đơn Đăng Ký Gia Nhập</h3>
+            <p class="section-subtitle" style="margin-bottom: 25px;">Yêu cầu cung cấp thông tin trung thực, không nói dối</p>
+            
+            <form onsubmit="sendApplication(event)">
+                <div class="form-group">
+                    <label>Tên In-game (Chính xác trong Server)</label>
+                    <input type="text" id="p-ign" placeholder="Nhập tên nhân vật của bạn..." required>
+                </div>
+                <div class="form-group">
+                    <label>Giới tính của bạn (Yêu cầu trung thực, không nói dối ⚠️)</label>
+                    <select id="p-gender">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Ẩn">Không muốn tiết lộ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Kỹ năng Minecraft thế mạnh nhất</label>
+                    <input type="text" id="p-skill" placeholder="Ví dụ: PvP Sword, Build, Đào khoáng, Farm quái..." required>
+                </div>
+                <div class="form-group">
+                    <label>Rank hiện tại trong Server</label>
+                    <input type="text" id="p-rank" placeholder="Ví dụ: Member, VIP, Champion, Đột Phá..." required>
+                </div>
+                <div class="form-group">
+                    <label>Đang chơi tại cụm nào của Server</label>
+                    <input type="text" id="p-server" placeholder="Ví dụ: Survival, Skyblock, Tu Tiên..." required>
+                </div>
+                <button type="submit" class="btn-submit">Nộp Đơn Lên Ban Quản Trị</button>
+            </form>
+        </div>
     </div>
-</section>
+</main>
 
-<div id="modal-overlay" onclick="closeModal(event)">
+<button class="btn-panel-trigger" onclick="openAdminPanel()">⚙️ PANEL DUYỆT ĐƠN <span id="badge-count">0</span></button>
+
+<div id="panel-modal" class="modal-overlay" onclick="closeModalWindow(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <button class="close-modal" onclick="toggleModal(false)">✕</button>
-        <div class="modal-avatar"><img id="m-img" src="" alt=""></div>
-        <h2 id="m-name" style="font-size: 24px; font-weight:700; color: #fff;"></h2>
-        <div id="m-role" class="mem-role" style="display: inline-block; margin-top: 8px;"></div>
+        <button class="close-btn" onclick="toggleModalWindow(false)">✕</button>
+        <h2 style="font-size: 22px; color: #ec4899; margin-bottom: 5px; text-transform: uppercase;">Bảng Điều Hành Ban Quản Trị</h2>
+        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Yêu cầu quyền hạn tối cao: Bang chủ TvTam (1111) hoặc Phó bang LyLy (2222) để thực hiện duyệt.</p>
         
-        <div class="modal-bio">
-            <strong style="color: #38bdf8;">Tiểu sử chiến tích:</strong>
-            <p id="m-bio" style="margin-top: 5px;"></p>
-        </div>
-
-        <div class="skills-section">
-            <div class="skill-info" style="color: #f59e0b; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Chỉ số thuộc tính cá nhân</div>
-            <div id="m-skills"></div>
-        </div>
+        <div id="panel-list-container">
+            </div>
     </div>
 </div>
 
 <script>
-// DỮ LIỆU THÀNH VIÊN CLAN (VIẾT 1 HÀNG THẲNG TẮP KHÔNG XUỐNG DÒNG THEO Ý BẠN)
-const clanStaticData = [
-    { type: "leader", name: "Lão Đại Clan", role: "Chủ Clan 👑", desc: "Người sáng lập bản lĩnh, tư duy chiến thuật đỉnh cao đỉnh của chóp.", img: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=300", bio: "Người anh cả đứng mũi chịu sào, gầy dựng clan từ con số không, lãnh đạo anh em bất bại qua hàng trăm trận Guild War lớn nhỏ.", skills: [{n: "Chiến thuật tư duy", v: "99%"}, {n: "Kỹ năng PK", v: "95%"}, {n: "Độ uy tín chỉ huy", v: "100%"}] },
-    { type: "vice", name: "Hải Công Nghệ", role: "Phó Clan ⚡", desc: "Bộ não quản lý, lo liệu hết mọi sự kiện và kỹ thuật hệ thống.", img: "https://images.unsplash.com/photo-1506803682981-6e718a9dd3ee?auto=format&fit=crop&q=80&w=300", bio: "Cánh tay phải đắc lực của Chủ Clan, chuyên gia điều phối nhân sự, lên lịch sự kiện và kiêm luôn quản lý website/máy chủ.", skills: [{n: "Quản lý Clan", v: "98%"}, {n: "Kỹ năng PK", v: "90%"}, {n: "Hỗ trợ anh em", v: "96%"}] },
-    { type: "member", name: "Khánh Thư", role: "Sát Thủ Tiên Phong ⚔️", desc: "Tốc độ nhanh như chớp, cứ lao lên là dứt điểm gọn gàng.", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300", bio: "Đại sứ gánh team của clan, kỹ năng cá nhân thượng thừa, luôn có mặt tại các điểm nóng để giải vây cho đồng đội.", skills: [{n: "Kỹ năng PK", v: "98%"}, {n: "Tốc độ phản xạ", v: "96%"}, {n: "Độ máu lửa", v: "95%"}] },
-    { type: "member", name: "Minh Quân", role: "Xạ Thủ Hỗ Trợ 🏹", desc: "Bắn bọc lót từ xa cực kỳ chuẩn xác, bảo kê đồng đội hết mình.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300", bio: "Người hùng thầm lặng luôn đứng phía sau tạo khoảng trống và gây sát thương cực lớn, khả năng phối hợp đồng đội vô cùng tuyệt vời.", skills: [{n: "Bọc lót đồng đội", v: "95%"}, {n: "Chính xác", v: "97%"}, {n: "Độ nhẫn nại", v: "92%"}] },
-    { type: "member", name: "Bảo An", role: "Hỗ Trợ Hồi Máu 💖", desc: "Bình máu di động, lá chắn tinh thần giúp cả đội an tâm chiến đấu.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300", bio: "Luôn có mặt đúng lúc đúng chỗ để buff máu và giáp, sở hữu tính cách cực kỳ dịu dàng, kết nối mọi người lại với nhau.", skills: [{n: "Tốc độ buff máu", v: "100%"}, {n: "Né đòn", v: "88%"}, {n: "Chỉ số hiền hòa", v: "96%"}] }
+// MÃ PIN PHÂN QUYỀN DUYỆT ĐƠN CỦA BANG CHỦ VÀ PHÓ BANG
+const VALID_ROLES = { "1111": "Bang chủ TvTam 👑", "2222": "Phó bang LyLy ⚡" };
+
+// DỮ LIỆU BAN QUẢN TRỊ CỐT CÁN BAN ĐẦU (1 HÀNG THẲNG TẮP KHÔNG XUỐNG DÒNG THEO Ý BẠN)
+const coreClanMembers = [
+    { name: "TvTam", role: "Bang chủ 👑", gender: "Nam", skill: "PvP, Build, Ít nói", rank: "Tối Cao", server: "All Cụm", avatar: "👑" },
+    { name: "LyLy", role: "Phó bang ⚡", gender: "Nữ", skill: "Build, Hòa đồng", rank: "Quản Lý", server: "All Cụm", avatar: "🎀" }
 ];
 
 window.onload = function() {
-    renderClan();
+    initClanDatabase();
+    renderClanHome();
+    updatePanelBadge();
 };
 
-function renderClan() {
-    const clanGrid = document.getElementById("clan-grid");
-    clanGrid.innerHTML = "";
+function initClanDatabase() {
+    if (!localStorage.getItem("approved_members")) localStorage.setItem("approved_members", JSON.stringify([]));
+    if (!localStorage.getItem("waiting_applications")) localStorage.setItem("waiting_applications", JSON.stringify([]));
+}
 
-    clanStaticData.forEach((mem, index) => {
-        const memDiv = document.createElement("div");
+// 1. HIỂN THỊ DANH SÁCH THÀNH VIÊN RA TRANG CHỦ
+function renderClanHome() {
+    const grid = document.getElementById("member-display-grid");
+    grid.innerHTML = "";
+
+    const approvedList = JSON.parse(localStorage.getItem("approved_members")) || [];
+    const allMembers = [...coreClanMembers, ...approvedList];
+
+    allMembers.forEach(mem => {
+        const card = document.createElement("div");
+        card.className = "member-card";
         
-        if(mem.type === "leader") {
-            memDiv.className = "member-card leader-card";
-            memDiv.innerHTML = `
-                <div class="avatar-box leader-avatar"><img src="${mem.img}"></div>
-                <div class="mem-name">${mem.name}</div>
-                <div class="mem-role leader-role">${mem.role}</div>
-                <div class="mem-desc">"${mem.desc}"</div>
-            `;
-        } else {
-            memDiv.className = "member-card";
-            memDiv.innerHTML = `
-                <div class="avatar-box"><img src="${mem.img}"></div>
-                <div class="mem-name">${mem.name}</div>
-                <div class="mem-role">${mem.role}</div>
-                <div class="mem-desc">"${mem.desc}"</div>
-            `;
-        }
-        
-        memDiv.setAttribute("onclick", `openDetail(${index})`);
-        clanGrid.appendChild(memDiv);
+        let roleClass = "role-member";
+        if(mem.role.includes("Bang chủ")) roleClass = "role-leader";
+        if(mem.role.includes("Phó bang")) roleClass = "role-vice";
+
+        card.innerHTML = `
+            <div class="avatar-box">${mem.avatar || "⚔️"}</div>
+            <div class="mem-name">${mem.name}</div>
+            <div class="mem-role ${roleClass}">${mem.role}</div>
+            <div class="mem-info-line">Giới tính: <strong>${mem.gender}</strong></div>
+            <div class="mem-info-line">Kỹ năng: <strong>${mem.skill}</strong></div>
+            <div class="mem-info-line">Rank Server: <strong>${mem.rank}</strong></div>
+            <div class="mem-info-line">Cụm đang chơi: <strong>${mem.server}</strong></div>
+        `;
+        grid.appendChild(card);
     });
 }
 
-function openDetail(index) {
-    let data = clanStaticData[index];
+// 2. NGƯỜI CHƠI NỘP ĐƠN ỨNG TUYỂN
+function sendApplication(e) {
+    e.preventDefault();
+    const ign = document.getElementById("p-ign").value.trim();
+    const gender = document.getElementById("p-gender").value;
+    const skill = document.getElementById("p-skill").value.trim();
+    const rank = document.getElementById("p-rank").value.trim();
+    const server = document.getElementById("p-server").value.trim();
+    const time = new Date().toLocaleString("vi-VN");
 
-    document.getElementById("m-img").src = data.img;
-    document.getElementById("m-name").innerText = data.name;
-    document.getElementById("m-role").innerText = data.role;
-    document.getElementById("m-bio").innerText = data.bio;
+    const appData = { id: Date.now(), name: ign, gender, skill, rank, server, time };
+    
+    let list = JSON.parse(localStorage.getItem("waiting_applications")) || [];
+    list.push(appData);
+    localStorage.setItem("waiting_applications", JSON.stringify(list));
 
-    // Gán màu role chuẩn giống bên ngoài
-    if(data.type === "leader") {
-        document.getElementById("m-role").className = "mem-role leader-role";
-    } else {
-        document.getElementById("m-role").className = "mem-role";
+    alert("🎉 Nộp đơn ứng tuyển thành công! Hãy đợi Bang chủ hoặc Phó bang xét duyệt đơn của bạn.");
+    e.target.reset();
+    updatePanelBadge();
+}
+
+function updatePanelBadge() {
+    const list = JSON.parse(localStorage.getItem("waiting_applications")) || [];
+    const badge = document.getElementById("badge-count");
+    if(list.length > 0) { badge.innerText = list.length; badge.style.display = "inline-block"; }
+    else { badge.style.display = "none"; }
+}
+
+// 3. RENDER DANH SÁCH ĐƠN XIN VÀO TRONG PANEL BẢO MẬT
+function renderPanelAdminList() {
+    const container = document.getElementById("panel-list-container");
+    const list = JSON.parse(localStorage.getItem("waiting_applications")) || [];
+
+    if(list.length === 0) {
+        container.innerHTML = `<p style="color: #64748b; font-style: italic; text-align: center; padding: 20px 0;">Hiện tại không có đơn ứng tuyển nào cần duyệt.</p>`;
+        return;
     }
 
-    let skillHtml = "";
-    data.skills.forEach(s => {
-        skillHtml += `
-            <div class="skill-wrapper">
-                <div class="skill-info"><span>${s.n}</span><span>${s.v}</span></div>
-                <div class="skill-track"><div class="skill-fill" data-width="${s.v}"></div></div>
-            </div>`;
+    container.innerHTML = "";
+    list.forEach(app => {
+        const div = document.createElement("div");
+        div.className = "app-item";
+        div.innerHTML = `
+            <div class="app-header"><span>Ứng viên: ${app.name}</span><span>${app.time}</span></div>
+            <div class="app-grid-info">
+                <div>Giới tính: <span>${app.gender}</span></div>
+                <div>Cụm chơi: <span>${app.server}</span></div>
+                <div>Rank Server: <span>${app.rank}</span></div>
+                <div style="grid-column: span 2; margin-top: 4px;">Kỹ năng Minecraft: <span>${app.skill}</span></div>
+            </div>
+            <div class="app-actions">
+                <button class="btn-act btn-rejc" onclick="processApp(${app.id}, 'reject')">Từ Chối</button>
+                <button class="btn-act btn-appr" onclick="processApp(${app.id}, 'approve')">Duyệt Vào Bang</button>
+            </div>
+        `;
+        container.appendChild(div);
     });
-    document.getElementById("m-skills").innerHTML = skillHtml;
-    
-    toggleModal(true);
-
-    setTimeout(() => {
-        let fills = document.querySelectorAll('.skill-fill');
-        fills.forEach(f => f.style.width = f.getAttribute('data-width'));
-    }, 150);
 }
 
-function toggleModal(show) {
-    const modal = document.getElementById("modal-overlay");
+// 4. XỬ LÝ DUYỆT (CHỈ CÓ BANG CHỦ TVTAM HOẶC PHÓ BANG LYLY MỚI DUYỆT ĐƯỢC)
+function processApp(id, actionType) {
+    const pin = prompt("Nhập mã PIN xác nhận quyền hạn xử lý (Bang chủ / Phó bang):");
+    if(pin === null) return;
+
+    if(VALID_ROLES[pin]) {
+        const managerRole = VALID_ROLES[pin];
+        let waitingList = JSON.parse(localStorage.getItem("waiting_applications")) || [];
+        const appObj = waitingList.find(item => item.id === id);
+
+        if(actionType === 'approve' && appObj) {
+            let approvedList = JSON.parse(localStorage.getItem("approved_members")) || [];
+            
+            // Đưa người chơi vào mảng lưu trữ chính thức
+            const newMember = { 
+                name: appObj.name, 
+                role: "Thành Viên ⚔️", 
+                gender: appObj.gender,
+                skill: appObj.skill, 
+                rank: appObj.rank, 
+                server: appObj.server, 
+                avatar: "⚔️" 
+            };
+            
+            approvedList.push(newMember);
+            localStorage.setItem("approved_members", JSON.stringify(approvedList));
+            alert(`✅ [${managerRole}] đã duyệt người chơi [${appObj.name}] gia nhập Clan thành công!`);
+        } else if(actionType === 'reject' && appObj) {
+            alert(`❌ [${managerRole}] đã từ chối đơn ứng tuyển của [${appObj.name}].`);
+        }
+
+        // Xóa đơn đã xử lý khỏi hàng đợi
+        waitingList = waitingList.filter(item => item.id !== id);
+        localStorage.setItem("waiting_applications", JSON.stringify(waitingList));
+        
+        // Cập nhật lại toàn bộ giao diện ngay lập tức
+        renderPanelAdminList();
+        updatePanelBadge();
+        renderClanHome();
+    } else {
+        alert("🔒 Thao tác bất hợp pháp! Bạn nhập sai mã PIN hoặc tài khoản của bạn không có thẩm quyền Duyệt.");
+    }
+}
+
+// MỞ PANEL HỎI MÃ PIN BẢO MẬT
+function openAdminPanel() {
+    const pin = prompt("Vui lòng nhập mã PIN quản trị để truy cập Panel:");
+    if(pin === null) return;
+
+    if(VALID_ROLES[pin]) {
+        alert(`🔓 Xác thực thành công! Xin chào [${VALID_ROLES[pin]}]. Tiến vào hệ thống quản lý đơn.`);
+        renderPanelAdminList();
+        toggleModalWindow(true);
+    } else {
+        alert("🔒 Truy cập bị từ chối! Bảng điều hành này chỉ dành riêng cho Bang chủ TvTam và Phó bang LyLy.");
+    }
+}
+
+function toggleModalWindow(show) {
+    const modal = document.getElementById("panel-modal");
     if(show) modal.classList.add("active");
     else modal.classList.remove("active");
 }
 
-function closeModal(e) { 
-    if(e.target.id === "modal-overlay") toggleModal(false); 
-}
-
-function handleSubmit(e) {
-    e.preventDefault();
-    alert("🎉 Gửi đơn ứng tuyển thành công! Ban quản trị Clan sẽ xem xét thông số của bạn sớm nhất.");
-    e.target.reset();
+function closeModalWindow(e) { 
+    if(e.target.id === "panel-modal") toggleModalWindow(false); 
 }
 </script>
 </body>

@@ -10,7 +10,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 body { background: #070a13; color: #f8fafc; overflow-x: hidden; }
-h1, h2, h3, .font-gaming { font-family: 'Space Grotesk', sans-serif; }
+h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 
 /* Giao diện Header / Banner */
 header { height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; background: linear-gradient(180deg, rgba(99, 102, 241, 0.12) 0%, #070a13 100%), url('https://images.unsplash.com/photo-1607988597396-03de406457f0?auto=format&fit=crop&q=80&w=1200') no-repeat center center; background-size: cover; border-bottom: 1px solid rgba(99, 102, 241, 0.15); }
@@ -22,9 +22,9 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 .section-title { text-align: center; font-size: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-bottom: 5px; }
 .section-subtitle { text-align: center; font-size: 13px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 2px; margin-bottom: 40px; }
 
-/* Lưới hiển thị thành viên */
+/* Lưới hiển thị thành viên ngoài trang chủ */
 .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-bottom: 70px; }
-.member-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.3s ease; position: relative; overflow: hidden; }
+.member-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.3s ease; position: relative; overflow: hidden; cursor: pointer; }
 .member-card:hover { transform: translateY(-5px); border-color: #6366f1; box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15); background: rgba(20, 31, 57, 0.8); }
 
 /* Avatar bằng ký tự icon */
@@ -39,7 +39,7 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 
 /* Thông tin chi tiết thu nhỏ trên card */
 .mem-info-line { display: flex; justify-content: space-between; font-size: 13px; color: #94a3b8; margin-bottom: 6px; padding: 0 5px; }
-.mem-info-line strong { color: #cbd5e1; text-align: right; max-width: 65%; word-break: break-all; }
+.mem-info-line strong { color: #cbd5e1; text-align: right; max-width: 65%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Form Đăng ký */
 .bottom-wrapper { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 650px; margin: 0 auto; }
@@ -58,14 +58,14 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 .btn-panel-trigger:hover { background: #ec4899; color: #fff; box-shadow: 0 0 25px rgba(236, 72, 153, 0.5); }
 #badge-count { background: #ef4444; color: #fff; padding: 1px 6px; border-radius: 50%; font-size: 10px; margin-left: 4px; display: none; }
 
-/* MODAL BOX PANEL ĐIỀU HÀNH */
+/* GIAO DIỆN MODAL CHUNG (Dùng chung cho Panel và Popup Xem Chi Tiết) */
 .modal-overlay { position: fixed; inset: 0; background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px; }
 .modal-overlay.active { opacity: 1; visibility: visible; }
-.modal-content { background: #0f172a; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; width: 100%; max-width: 680px; padding: 35px; position: relative; max-height: 85vh; overflow-y: auto; transform: translateY(15px); transition: 0.3s ease; }
+.modal-content { background: #0f172a; border: 1px solid rgba(255,255,255,0.05); border-radius: 24px; width: 100%; max-width: 600px; padding: 35px; position: relative; max-height: 85vh; overflow-y: auto; transform: translateY(15px); transition: 0.3s ease; }
 .modal-overlay.active .modal-content { transform: translateY(0); }
 .close-btn { position: absolute; top: 20px; right: 20px; background: #1e293b; border: none; color: #94a3b8; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 12px; }
 
-/* Giao diện danh sách đơn trong Panel */
+/* CSS Panel Quản trị */
 .app-item { background: #1e293b; border-radius: 14px; padding: 20px; margin-top: 15px; border-left: 4px solid #6366f1; }
 .app-header { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
 .app-grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 14px; color: #cbd5e1; }
@@ -75,6 +75,12 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 .btn-act { padding: 7px 16px; border-radius: 6px; border: none; font-size: 12px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
 .btn-appr { background: #10b981; color: #fff; }
 .btn-rejc { background: #ef4444; color: #fff; }
+
+/* CSS Popup Chi tiết thành viên */
+.detail-box { text-align: center; }
+.detail-avatar { width: 90px; height: 90px; background: #1e293b; border-radius: 20px; margin: 10px auto 20px auto; display: flex; justify-content: center; align-items: center; font-size: 40px; border: 2px solid #6366f1; }
+.detail-info-row { display: flex; justify-content: space-between; padding: 12px 5px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 15px; color: #94a3b8; }
+.detail-info-row span { color: #fff; font-weight: 600; text-align: right; max-width: 60%; word-break: break-all; }
 </style>
 </head>
 
@@ -82,12 +88,12 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 
 <header>
     <h1>C L A N - M I N E C R A F T</h1>
-    <p>Hệ thống quản lý và đồng bộ thành viên tự động. Đơn ứng tuyển sau khi nộp sẽ được chuyển thẳng tới Panel của Bang chủ và Phó bang để tiến hành phê duyệt.</p>
+    <p>Hệ thống tự động đồng bộ thành viên. Đơn sau khi được duyệt sẽ hiển thị công khai ở menu thành viên ngay lập tức, bấm vào từng thành viên để xem thông tin chi tiết.</p>
 </header>
 
 <main>
     <h2 class="section-title">Hội Đồng Thành Viên</h2>
-    <div class="section-subtitle">Thành viên chính thức đang có mặt trong Clan</div>
+    <div class="section-subtitle">Bấm vào thẻ của bất kỳ chiến binh nào để xem toàn bộ thông tin cá nhân</div>
     
     <div class="member-grid" id="member-display-grid">
         </div>
@@ -95,7 +101,7 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
     <div class="bottom-wrapper">
         <div class="box-style">
             <h3 class="section-title" style="font-size: 24px; margin-bottom: 5px;">Đơn Đăng Ký Gia Nhập</h3>
-            <p class="section-subtitle" style="margin-bottom: 25px;">Yêu cầu cung cấp thông tin trung thực, không nói dối</p>
+            <p class="section-subtitle" style="margin-bottom: 25px;">Yêu cầu cung cấp thông tin trung thực, không nói dối giới tính</p>
             
             <form onsubmit="sendApplication(event)">
                 <div class="form-group">
@@ -130,26 +136,43 @@ main { max-width: 1300px; margin: 0 auto; padding: 50px 4%; }
 
 <button class="btn-panel-trigger" onclick="openAdminPanel()">⚙️ PANEL DUYỆT ĐƠN <span id="badge-count">0</span></button>
 
-<div id="panel-modal" class="modal-overlay" onclick="closeModalWindow(event)">
+
+<div id="panel-modal" class="modal-overlay" onclick="closeModalWindow(event, 'panel-modal')">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="toggleModalWindow(false)">✕</button>
+        <button class="close-btn" onclick="toggleModalWindow('panel-modal', false)">✕</button>
         <h2 style="font-size: 22px; color: #ec4899; margin-bottom: 5px; text-transform: uppercase;">Bảng Điều Hành Ban Quản Trị</h2>
-        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Yêu cầu quyền hạn tối cao: Bang chủ TvTam (1111) hoặc Phó bang LyLy (2222) để thực hiện duyệt.</p>
-        
-        <div id="panel-list-container">
-            </div>
+        <p style="color: #64748b; font-size: 12px; margin-bottom: 20px; font-weight: 600;">Quyền xử lý: Bang chủ TvTam (1111) hoặc Phó bang LyLy (2222).</p>
+        <div id="panel-list-container"></div>
     </div>
 </div>
 
+
+<div id="detail-modal" class="modal-overlay" onclick="closeModalWindow(event, 'detail-modal')">
+    <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="toggleModalWindow('detail-modal', false)">✕</button>
+        <div class="detail-box">
+            <div class="detail-avatar" id="d-avatar">⚔️</div>
+            <h2 id="d-name" style="font-size: 26px; color: #fff; margin-bottom: 2px;">In-game</h2>
+            <div id="d-role" style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: #38bdf8; margin-bottom: 25px; letter-spacing: 1px;">Chức vụ</div>
+            
+            <div class="detail-info-row">👥 Giới tính: <span id="d-gender">Chưa rõ</span></div>
+            <div class="detail-info-row">🔥 Kỹ năng nổi bật: <span id="d-skill">Chưa rõ</span></div>
+            <div class="detail-info-row">👑 Rank Server hiện tại: <span id="d-rank">Chưa rõ</span></div>
+            <div class="detail-info-row">🗺️ Cụm đang tham gia: <span id="d-server">Chưa rõ</span></div>
+        </div>
+    </div>
+</div>
+
+
 <script>
-// MÃ PIN PHÂN QUYỀN DUYỆT ĐƠN CỦA BANG CHỦ VÀ PHÓ BANG
+// MÃ PIN QUYỀN HẠN CỦA BANG CHỦ VÀ PHÓ BANG
 const VALID_ROLES = { "1111": "Bang chủ TvTam 👑", "2222": "Phó bang LyLy ⚡" };
 
-// DỮ LIỆU BAN QUẢN TRỊ CỐT CÁN BAN ĐẦU (1 HÀNG THẲNG TẮP KHÔNG XUỐNG DÒNG THEO Ý BẠN)
-const coreClanMembers = [
-    { name: "TvTam", role: "Bang chủ 👑", gender: "Nam", skill: "PvP, Build, Ít nói", rank: "Tối Cao", server: "All Cụm", avatar: "👑" },
-    { name: "LyLy", role: "Phó bang ⚡", gender: "Nữ", skill: "Build, Hòa đồng", rank: "Quản Lý", server: "All Cụm", avatar: "🎀" }
-];
+// BAN QUẢN TRỊ GỐC BAN ĐẦU ĐƯỢC THIẾT KẾ TRÊN 1 HÀNG THẲNG TẮP ĐÚNG YÊU CẦU
+const coreClanMembers = [{ name: "TvTam", role: "Bang chủ 👑", gender: "Nam", skill: "PvP, Build, Ít nói", rank: "Tối Cao", server: "All Cụm", avatar: "👑" }, { name: "LyLy", role: "Phó bang ⚡", gender: "Nữ", skill: "Build, Hòa đồng", rank: "Quản Lý", server: "All Cụm", avatar: "🎀" }];
+
+// Biến toàn cục tạm lưu để hỗ trợ bấm xem chi tiết nhanh
+let currentAllMembersArray = [];
 
 window.onload = function() {
     initClanDatabase();
@@ -168,11 +191,12 @@ function renderClanHome() {
     grid.innerHTML = "";
 
     const approvedList = JSON.parse(localStorage.getItem("approved_members")) || [];
-    const allMembers = [...coreClanMembers, ...approvedList];
+    currentAllMembersArray = [...coreClanMembers, ...approvedList];
 
-    allMembers.forEach(mem => {
+    currentAllMembersArray.forEach((mem, index) => {
         const card = document.createElement("div");
         card.className = "member-card";
+        card.setAttribute("onclick", `showMemberDetail(${index})`); // Click để mở popup chi tiết công khai
         
         let roleClass = "role-member";
         if(mem.role.includes("Bang chủ")) roleClass = "role-leader";
@@ -182,16 +206,36 @@ function renderClanHome() {
             <div class="avatar-box">${mem.avatar || "⚔️"}</div>
             <div class="mem-name">${mem.name}</div>
             <div class="mem-role ${roleClass}">${mem.role}</div>
-            <div class="mem-info-line">Giới tính: <strong>${mem.gender}</strong></div>
             <div class="mem-info-line">Kỹ năng: <strong>${mem.skill}</strong></div>
-            <div class="mem-info-line">Rank Server: <strong>${mem.rank}</strong></div>
-            <div class="mem-info-line">Cụm đang chơi: <strong>${mem.server}</strong></div>
+            <div class="mem-info-line">Rank: <strong>${mem.rank}</strong></div>
         `;
         grid.appendChild(card);
     });
 }
 
-// 2. NGƯỜI CHƠI NỘP ĐƠN ỨNG TUYỂN
+// 2. MỞ POPUP XEM CHI TIẾT KỸ NĂNG VÀ GIỚI TÍNH CỦA THÀNH VIÊN ĐÃ ĐĂNG KÝ
+function showMemberDetail(index) {
+    const mem = currentAllMembersArray[index];
+    if(!mem) return;
+
+    document.getElementById("d-avatar").innerText = mem.avatar || "⚔️";
+    document.getElementById("d-name").innerText = mem.name;
+    document.getElementById("d-role").innerText = mem.role;
+    document.getElementById("d-gender").innerText = mem.gender;
+    document.getElementById("d-skill").innerText = mem.skill;
+    document.getElementById("d-rank").innerText = mem.rank;
+    document.getElementById("d-server").innerText = mem.server;
+
+    // Đổi màu chữ của chức vụ trong popup chi tiết
+    const roleEl = document.getElementById("d-role");
+    if(mem.role.includes("Bang chủ")) roleEl.style.color = "#f59e0b";
+    else if(mem.role.includes("Phó bang")) roleEl.style.color = "#38bdf8";
+    else roleEl.style.color = "#10b981";
+
+    toggleModalWindow('detail-modal', true);
+}
+
+// 3. NGƯỜI CHƠI NỘP ĐƠN ỨNG TUYỂN
 function sendApplication(e) {
     e.preventDefault();
     const ign = document.getElementById("p-ign").value.trim();
@@ -207,7 +251,7 @@ function sendApplication(e) {
     list.push(appData);
     localStorage.setItem("waiting_applications", JSON.stringify(list));
 
-    alert("🎉 Nộp đơn ứng tuyển thành công! Hãy đợi Bang chủ hoặc Phó bang xét duyệt đơn của bạn.");
+    alert("🎉 Đã nộp đơn thành công lên hệ thống xét duyệt của TvTam và LyLy!");
     e.target.reset();
     updatePanelBadge();
 }
@@ -219,7 +263,7 @@ function updatePanelBadge() {
     else { badge.style.display = "none"; }
 }
 
-// 3. RENDER DANH SÁCH ĐƠN XIN VÀO TRONG PANEL BẢO MẬT
+// 4. XEM DANH SÁCH CHỜ XỬ LÝ TRONG PANEL BẢO MẬT
 function renderPanelAdminList() {
     const container = document.getElementById("panel-list-container");
     const list = JSON.parse(localStorage.getItem("waiting_applications")) || [];
@@ -250,7 +294,7 @@ function renderPanelAdminList() {
     });
 }
 
-// 4. XỬ LÝ DUYỆT (CHỈ CÓ BANG CHỦ TVTAM HOẶC PHÓ BANG LYLY MỚI DUYỆT ĐƯỢC)
+// 5. THAO TÁC DUYỆT ĐƠN VÀ ĐẨY TỰ ĐỘNG RA MENU NGOÀI
 function processApp(id, actionType) {
     const pin = prompt("Nhập mã PIN xác nhận quyền hạn xử lý (Bang chủ / Phó bang):");
     if(pin === null) return;
@@ -263,7 +307,7 @@ function processApp(id, actionType) {
         if(actionType === 'approve' && appObj) {
             let approvedList = JSON.parse(localStorage.getItem("approved_members")) || [];
             
-            // Đưa người chơi vào mảng lưu trữ chính thức
+            // Giữ nguyên thông tin giới tính + kỹ năng lúc nộp để hiển thị khi bấm vào card ngoài trang chủ
             const newMember = { 
                 name: appObj.name, 
                 role: "Thành Viên ⚔️", 
@@ -276,46 +320,44 @@ function processApp(id, actionType) {
             
             approvedList.push(newMember);
             localStorage.setItem("approved_members", JSON.stringify(approvedList));
-            alert(`✅ [${managerRole}] đã duyệt người chơi [${appObj.name}] gia nhập Clan thành công!`);
+            alert(`✅ [${managerRole}] đã duyệt thành công! Người chơi [${appObj.name}] đã tự động ra danh sách bên ngoài.`);
         } else if(actionType === 'reject' && appObj) {
-            alert(`❌ [${managerRole}] đã từ chối đơn ứng tuyển của [${appObj.name}].`);
+            alert(`❌ [${managerRole}] đã từ chối đơn của [${appObj.name}].`);
         }
 
-        // Xóa đơn đã xử lý khỏi hàng đợi
         waitingList = waitingList.filter(item => item.id !== id);
         localStorage.setItem("waiting_applications", JSON.stringify(waitingList));
         
-        // Cập nhật lại toàn bộ giao diện ngay lập tức
         renderPanelAdminList();
         updatePanelBadge();
-        renderClanHome();
+        renderClanHome(); 
     } else {
-        alert("🔒 Thao tác bất hợp pháp! Bạn nhập sai mã PIN hoặc tài khoản của bạn không có thẩm quyền Duyệt.");
+        alert("🔒 Mã PIN sai! Thao tác bị từ chối.");
     }
 }
 
 // MỞ PANEL HỎI MÃ PIN BẢO MẬT
 function openAdminPanel() {
-    const pin = prompt("Vui lòng nhập mã PIN quản trị để truy cập Panel:");
+    const pin = prompt("Vui lòng nhập mã PIN quản trị để vào Panel:");
     if(pin === null) return;
 
     if(VALID_ROLES[pin]) {
-        alert(`🔓 Xác thực thành công! Xin chào [${VALID_ROLES[pin]}]. Tiến vào hệ thống quản lý đơn.`);
+        alert(`🔓 Xin chào [${VALID_ROLES[pin]}]. Tiến vào hệ thống quản lý!`);
         renderPanelAdminList();
-        toggleModalWindow(true);
+        toggleModalWindow('panel-modal', true);
     } else {
-        alert("🔒 Truy cập bị từ chối! Bảng điều hành này chỉ dành riêng cho Bang chủ TvTam và Phó bang LyLy.");
+        alert("🔒 Từ chối! Bảng điều hành này chỉ thuộc về Bang chủ TvTam và Phó bang LyLy.");
     }
 }
 
-function toggleModalWindow(show) {
-    const modal = document.getElementById("panel-modal");
+function toggleModalWindow(modalId, show) {
+    const modal = document.getElementById(modalId);
     if(show) modal.classList.add("active");
     else modal.classList.remove("active");
 }
 
-function closeModalWindow(e) { 
-    if(e.target.id === "panel-modal") toggleModalWindow(false); 
+function closeModalWindow(e, modalId) { 
+    if(e.target.id === modalId) toggleModalWindow(modalId, false); 
 }
 </script>
 </body>
